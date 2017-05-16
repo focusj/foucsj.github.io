@@ -84,6 +84,7 @@ C10K
 
 ## 压测工具
 [wrk](https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux)
+[Web服务器性能/压力测试工具http_load、webbench、ab、Siege使用教程](https://www.vpser.net/opt/webserver-test.html)
 
 
 [Functional Reactive Programming](https://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming)
