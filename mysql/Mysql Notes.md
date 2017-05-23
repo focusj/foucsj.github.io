@@ -15,27 +15,16 @@ ALTER TABLE `order_fsm_event_logs` MODIFY `payload` Text CHARACTER SET utf8mb4 C
 ```
 
 
-
-### MySQL局域网访问
-
-1. 首先修改mysql绑定的host, comment掉my.conf[/etc/mysql/mysql.conf.d/mysqld.cnf]中的这一行:`bind-address = 127.0.0.1`.
-
-2. 执行一下sql语句:
-
+### 添加Column
+```
+ALTER TABLE `entity_user` ADD COLUMN `user_review_score` int(11) NOT NULL DEFAULT '0',
+                          ADD COLUMN `positive_ratings` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '';
 ```
 
 
+### 修改MySQL绑定host
 
-mysql>use mysql;
-
-mysql>update user set host = '%' where user = 'root';
-
-mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
-
-mysql>FLUSH PRIVILEGES;
-
-```
-
+首先修改mysql绑定的host, 改掉my.conf[/etc/mysql/mysql.conf.d/mysqld.cnf]中的这一行:`bind-address = 0.0.0.0`。重启服务，局域网可以访问MySQL。
 
 
 ### MySQL导出数据到文件
