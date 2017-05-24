@@ -12,4 +12,4 @@ EventLoop是Netty处理并发的底层抽象。顾名思义，EventLoop的工作
 
 - 一个Channel只和一个EventLoop绑定，一个EventLoop可以处理一到多个Channel
 
-![netty-componets](images/Selection_041.png)
+![netty-componets](../images/Selection_041.png)
