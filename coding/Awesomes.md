@@ -108,8 +108,14 @@ http://www.infoq.com/cn/articles/best-practices-cassandra-data-model-design-part
 
 [亿级流量网站架构核心技术](http://jinnianshilongnian.iteye.com/blog/2347183)
 
-面试
+
+
+
+## 面试
 [面试前需要做哪些准备？] (http://daily.zhihu.com/story/9365229?utm_campaign=in_app_share&utm_medium=Android&utm_source=com.baiji.jianshu.ui.editor.EditorActivityV19)
 
 Reactive Programming
 rxjava
+
+## Pattern
+[Observer pattern](https://en.wikipedia.org/wiki/Observer_pattern)
