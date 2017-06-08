@@ -121,3 +121,12 @@ rxjava
 
 ## Pattern
 [Observer pattern](https://en.wikipedia.org/wiki/Observer_pattern)
+
+## Netty
+[Netty资料皆阵列在前](http://calvin1978.blogcn.com/articles/netty-info.html)
+
+## 锁
+[基于Redis的分布式锁到底安全吗（上）？](https://mp.weixin.qq.com/s/JTsJCDuasgIJ0j95K8Ay8w)
+[基于Redis的分布式锁到底安全吗（下）？](https://mp.weixin.qq.com/s/4CUe7OpM6y1kQRK8TOC_qQ)
+
+[Java AQS](http://ifeve.com/aqs/)
