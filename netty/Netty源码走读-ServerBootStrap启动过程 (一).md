@@ -2,7 +2,7 @@
 
 ## 写在开始
 
-这篇文章的主要目的是探寻Netty的启动过程，并能够解答下边两个问题。看这篇文章至少需要具备一些Java知识，并且大概对Netty有一些了解。
+这篇文章的主要目的是探寻Netty的启动过程，目的是搞清楚下边两个问题。看这篇文章至少需要具备一些Java知识，并且大概对Netty有一些了解。
 
 1.ServerSocketChannel是何时，如何初始化的？
 2.ServerSocketChannel是何时register到Eventloop？
@@ -13,14 +13,9 @@
 2. 导入idea，idea会自动识别maven项目，下载依赖需要一段时间。
 3. 编译，方便debug。首先build common：`cd common && mvn clean install`，然后就可以在idea中运行程序了。
 
-
-Reactor模型
-Netty的工作模型（Channel，eventloop）
-准备工作：下载源代码，并导入idea中，把项目编译通过。
-
 ## 源码分析
 
-Netty源码中，有一个子项目叫examples。这里边自带了非常多Netty的例子，学习Netty，这些例子是最好的入门资料。我们打开DiscardServer这个示例，这个例子相当于学习一门新语言时的HelloWorld。从哪里开始看起呢？请看下边代码：
+Netty源码中，有一个子项目叫examples。这里边自带了非常多Netty的例子，学习Netty，这些例子是最好的入门资料。我们打开DiscardServer这个示例，这个例子是最简单的入门示例。相当于学习一门新语言时的HelloWorld。从哪里开始看起呢？请看下边代码：
 
 ```Java
 // Bind and start to accept incoming connections.
@@ -65,9 +60,9 @@ Netty代码质量非常高，通过读代码我们就能大概知道这个函数
 
 - 绑定Address。
 
-如果我们不想探究细节的话，其实前两个问题我们现在已经可以解答了：AbstractBootstrap类的doBind方法，通过调用initAndRegister创建一个Channel，并把它Register到Eventloop上。但是这样回答时我们还是非常不自行的，因为initAndRegister干了什么，doBind0又干了啥，我们没有一点头绪。所以，我们再接着向下深入一层（好的代码是有层次感的，而不是一个全能的大方法搞定一切）。
+如果我们不想探究细节的话，其实前两个问题我们现在已经可以解答了：AbstractBootstrap类的doBind方法，通过调用initAndRegister创建一个Channel，并把它Register到Eventloop上。但是这样回答时我们还是非常不自信的，因为initAndRegister干了什么，doBind0又干了啥，我们没有一点头绪。所以，我们再接着向下深入一层（好的代码是有层次感的，而不是一个全能的大方法搞定一切）。
 
-我们接下来展开initAndRegister方法，看这个方法有两个目的：channel如何init的；channel是如何register的？
+我们接下来展开initAndRegister方法，看这个方法有两个目的：channel如何init，如何register？
 
 ```Java
     final ChannelFuture initAndRegister() {
@@ -138,15 +133,16 @@ Netty代码质量非常高，通过读代码我们就能大概知道这个函数
     }
 
 ```
+
 channel调用了channelFactory这个方法，并把NioServerSocketChannel的ReflectiveChannelFactory传递给它。channelFactory把这个值传给了channelFactory属性。看到这其实已经有点谱了，channel是ReflectiveChannelFactory通过反射方式创建的NioServerSocketChannel的实例。
 
 接下来我们开始走register这条线。执行register的逻辑是：`ChannelFuture regFuture = config().group().register(channel)`。我们跟进group()方法，发现最终这个方法返回的是AbstractBootstrap的group的属性。找一下这个group是何时set的。回到DiscardServer的代码中：`b.group(bossGroup, workerGroup)`，我们跟进这个group方法。进去后发现`super.group(parentGroup);`，调用了AbstractBootstrap的group方法，在这个方法中对group属性进行了赋值。所以，config().group()返回的是bossGroup。
 
-接下来跟进register方法。register是EventLoopGroup接口中的方法。究竟该看哪个实现呢？再回到DiscardServer类，我们发现bossGroup是一个NioEventLoopGroup的实例。NioEventLoopGroup中还是没有register方法。看一下NioEventLoopGroup的继承关系，如果它没实现肯定是在其父类中实现了。我们看一下它的继承关系：
+接下来跟进register方法。register是EventLoopGroup接口中的方法。究竟该看哪个实现呢？再回到DiscardServer类，我们发现bossGroup是一个NioEventLoopGroup的实例。但是NioEventLoopGroup中并没有register方法。看一下NioEventLoopGroup的继承关系，如果它没实现肯定是在其父类中实现了。我们看一下它的继承关系：
 
 ![NioEventLoopGroup继承关系](../images/NioEventLoopGroup.png)
 
-去MultithreadEventLoopGroup中确实有register方法的实现：
+去MultithreadEventLoopGroup中，确实有register方法的实现：
 
 ```Java
     public ChannelFuture register(Channel channel) {
@@ -181,7 +177,7 @@ channel调用了channelFactory这个方法，并把NioServerSocketChannel的Refl
     }
 ```
 
-DefaultEventExecutorChooserFactory中实现了两个Chooser：PowerOfTwoEventExecutorChooser和GenericEventExecutorChooser。选择chooser时会进行判断，如果是executor的size是2的幂的话会选择使用第一种，这样更快一点，否则的话逐个从线程池中拿。（疑问为什么power of two会更快？？？）
+DefaultEventExecutorChooserFactory中实现了两个Chooser：PowerOfTwoEventExecutorChooser和GenericEventExecutorChooser。选择chooser时会进行判断，如果是executor的size是2的幂的话会选择使用第一种，这样更快一点，使用按位操作，否则的话逐个从线程池中拿。
 
 chooser.next()选择出来的其实是NioEventExecutor，在这会进行强转，变成EventLoop类型？这里我们看一下EventLoop的继承关系。
 
@@ -391,5 +387,4 @@ register首先把eventloop传给了AbstractChannel的eventloop；然后调用reg
 
 javaChannel()拿的是最开始通过factory创建的channel，通过看AbstractNioChannel构造器可以知道；eventloop是我们调用register时的SingleThreadEventLoop。看到这才知道最底层原来是这样的：Channel是注册到了Selector上。
 
-至此，channel的init和register两个过程我们都在代码里找到了线索。而且我们还搞清楚了register的真相：channel register到Selector上。
-
+至此，channel的init和register两个过程我们都在代码里找到了线索。而且我们还搞清楚了register的真相：channel register到Selector上。差点忘了，我们还有一个bind逻辑还没有分析呢。但是理解bind逻辑需要对Netty的Pipeline有一些了解。所以，下一篇文章中会重点介绍一下Netty的Pipeline，以及完成bind逻辑的解读。
