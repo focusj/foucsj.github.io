@@ -25,7 +25,10 @@ Fix Header中低四位是标志位（Flags），不同的报文类型其标志�
 从第二个字节开始，MQTT协议规定用1~4个字节记录报文的剩余长度。剩余长度不包括固定报头和报文长度占用的字节。所以，报文长度=可变报头长度+Payload长度。每个byte 低7位用于编码数据，剩下的最高位用于标识是否还有更多数据。所以，mqtt最大长度可达256M，对应字节数268435455。
 
 ### Variable Header
+
 在Remainnig Length后边是Variable Header。可变报头存在于部分报文中，不同的报文类型其可变报头也不一样。比如PUBLISH（QoS > 0时）， PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE, SUBACK， UNSUBSCIBE，UNSUBACK这些报文拥有一个两个字节长度的Package Identifier；CONNECT有四个可变报头：Protocol Name，Protocol Level，Connect Flags，Keep Alive
+
+下边挑几个复杂的报文介绍一下
 
 ## Connect报文
 
@@ -85,15 +88,33 @@ Will包含三位：Will Flag是否在意外断开时发布遗嘱消息，Will Qo
 
 接下来是Password和User Name。这些都比较简单，如果有的话在Payload中填写相应的值即可。
 
+## PUBLISH 报文
+
+publish用于客户端向服务端或服务端向服务端发送消息。看一下它的消息格式。
+
+### Fix Header
+
+上边已经说过publish的固定报头是3，所以如下图固定报头的第四五位都是1。
+
+![publish-fix-header](../images/Selection_093.png)
+
+然后publish是四个标识位，由低到高分别是：Retain，QoS（占用1，2两位），DUP。
+
 ### QoS
 
-MQTT规定了三种消息服务级别
-QoS0：Fire and Forgot；
-QoS1：At Least Once；
-QoS2：Exectly Once。其中QoS2是最级别的协议。它需要经过两次服务端与客户端的通信才能完成： Publish <-> PubRec，PubRel <-> PubCOMP
+QoS标识消息的服务级别，MQTT规定了三种消息服务级别：
+QoS 0：Fire and Forgot；
+QoS 1：At Least Once；
+QoS 2：Exectly Once。其中QoS2是最级别的协议。它需要经过两次服务端与客户端的通信才能完成： PUBLISH <-> PUBREC，PUBREL <-> PUBCOMP
 
-
-
+实际应用中根据自己的应用特点选择不同的服务级别即可。
 
 ### Retain
 
+如果客户端发送的retain标识为1，则服务端必须保存该条消息以及它的QoS。以便这个topic有新的订阅者订阅时，服务端要把这个消息推送给它。使用Retain的好处就是新的订阅者订阅成功之后便能得到最近的一条消息，无需等到下次产生消息时。
+
+注意在协议文档中说道：`When a new subscription is established, the last retained message, if any, on each matching topic name MUST be sent to the subscriber.`。所以，每个retain 消息都会覆盖上一条，把这条消息最为最新保留消息。
+
+如果服务器收到发送retain为true，payload为空的消息，它会把这个topic保留的retain消息删除。
+
+如果服务器收到的 QoS 0 消息的保留标志设置为 1, 则它必须丢弃以前为该主题保留的任何消息。它应该将新的 QoS 0 消息存储为该主题的新保留消息, 但在任何时候都可以选择丢弃它, 如果发生这种情况, 该主题将不会有保留消息。
