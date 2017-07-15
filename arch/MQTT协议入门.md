@@ -1,34 +1,41 @@
 # QMTT Protocol
 
-## 协议格式
+## MQTT协议特性
 
-MQTT协议主要有三部分组成：固定报头（Fix Header），可变报头（Variable Header）和Payload。其中固定报头是必需字段，可变报头和Payload均是可选字段。
+一句话总结：mqtt是一个简单，轻量的消息发布/订阅协议。
+
+
+## MQTT报文结构
+
+一个MQTT报文主要由三部分组成：固定报头（Fix Header），可变报头（Variable Header）和Payload。所有的报文都必须要有固定报头，而可变报头和Payload只有特定的消息才有。
 
 ![Structure](../images/Selection_087.png)
 
 ### Fix Header
 
-Fix Header占用一个Byte，其中高四位用于控制报文类型，其中第0和15位是预留位，因此MQTT只有14种报文类型。
+Fix Header使用一个Byte来标识，其中高四位用于控制报文类型。所以，MQTT最多能够表示16中报文类型。就目前v3.1.1版本来说，这4位并没有完全占用，还有两个保留值，分别是0和15。所以，MQTT有14种报文类型，下边会展开介绍。下边表格展示了每种报文类型其固定报头的值：
 
 ![Control Packets](../images/Selection_088.png)
 
-Fix Header中低四位是标志位（Flags），不同的报文类型其标志位的值如下：
+Fix Header中低四位是标志位（Flags），标志位没啥好说的，而且它的是也基本固定，我们大概看下不同的报文对应的标志位的值：
 
 ![Fix Header](../images/Selection_010.png)
 
-在可变报头后边，紧接着就是Payload。和可变报头一样，并不是所有的报文都有Payload。
+### Variable Header
+
+除了固定报头，MQTT还制定了可变报头。可变报头只存在于部分报文中，并且不同的报文类型其可变报头也不一样。比如PUBLISH（QoS > 0时）， PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE, SUBACK， UNSUBSCIBE，UNSUBACK这些报文拥有一个两个字节长度的Package Identifier；CONNECT有四个可变报头：Protocol Name，Protocol Level，Connect Flags，Keep Alive。
+
+### Payload
+
+在可变报头后，紧接着就是Payload。Payload也是部分报文拥有。比如Publish消息，用它来存储推送的消息内容；Connect消息可用它来存储用户名密码，Subscribe可用它来存储订阅的主题名，等等。像PingReq，PingResp，PubAck等这些消息就没有Payload。下表展示了不同消息其Payload的情况：
 
 ![Payload](../images/Selection_090.png)
 
 ### 剩余长度 Remaining Length
 
-从第二个字节开始，MQTT协议规定用1~4个字节记录报文的剩余长度。剩余长度不包括固定报头和报文长度占用的字节。所以，报文长度=可变报头长度+Payload长度。每个byte 低7位用于编码数据，剩下的最高位用于标识是否还有更多数据。所以，mqtt最大长度可达256M，对应字节数268435455。
+剩余长度是除了Fix Header以及剩余长度本身之外的报文大小。即，剩余长度=可变报头长度+Payload长度。MQTT规定用1~4个字节记录报文的剩余长度。其中每个自己的最高位用来标识是否有更多的数据，这样一个字节最大能表示数值128。4个字节是最大能表示268435455，也就是256M。
 
-### Variable Header
-
-在Remainnig Length后边是Variable Header。可变报头存在于部分报文中，不同的报文类型其可变报头也不一样。比如PUBLISH（QoS > 0时）， PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE, SUBACK， UNSUBSCIBE，UNSUBACK这些报文拥有一个两个字节长度的Package Identifier；CONNECT有四个可变报头：Protocol Name，Protocol Level，Connect Flags，Keep Alive
-
-下边挑几个复杂的报文介绍一下
+## MQTT报文概览
 
 ## Connect报文
 
