@@ -110,23 +110,22 @@ http://www.infoq.com/cn/articles/best-practices-cassandra-data-model-design-part
 
 [亿级流量网站架构核心技术](http://jinnianshilongnian.iteye.com/blog/2347183)
 
-
-
-
-## 面试
-[面试前需要做哪些准备？] (http://daily.zhihu.com/story/9365229?utm_campaign=in_app_share&utm_medium=Android&utm_source=com.baiji.jianshu.ui.editor.EditorActivityV19)
-
-Reactive Programming
-rxjava
-
 ## Pattern
-[Observer pattern](https://en.wikipedia.org/wiki/Observer_pattern)
+
+[Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern)
+[Iterator Pattern](https://en.wikipedia.org/wiki/Iterator_pattern)
+[Reactive Extensions](https://en.wikipedia.org/wiki/Reactive_extensions)
 
 ## Netty
+
 [Netty资料皆阵列在前](http://calvin1978.blogcn.com/articles/netty-info.html)
 
 ## 锁
+
 [基于Redis的分布式锁到底安全吗（上）？](https://mp.weixin.qq.com/s/JTsJCDuasgIJ0j95K8Ay8w)
 [基于Redis的分布式锁到底安全吗（下）？](https://mp.weixin.qq.com/s/4CUe7OpM6y1kQRK8TOC_qQ)
 
 [Java AQS](http://ifeve.com/aqs/)
+
+## 面试
+[面试前需要做哪些准备？] (http://daily.zhihu.com/story/9365229?utm_campaign=in_app_share&utm_medium=Android&utm_source=com.baiji.jianshu.ui.editor.EditorActivityV19)
