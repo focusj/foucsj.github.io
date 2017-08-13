@@ -115,6 +115,7 @@ http://www.infoq.com/cn/articles/best-practices-cassandra-data-model-design-part
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern)
 [Iterator Pattern](https://en.wikipedia.org/wiki/Iterator_pattern)
 [Reactive Extensions](https://en.wikipedia.org/wiki/Reactive_extensions)
+[Functional Reactive Programming](http://conal.net/talks/)
 
 ## Netty
 
@@ -128,4 +129,5 @@ http://www.infoq.com/cn/articles/best-practices-cassandra-data-model-design-part
 [Java AQS](http://ifeve.com/aqs/)
 
 ## 面试
+
 [面试前需要做哪些准备？] (http://daily.zhihu.com/story/9365229?utm_campaign=in_app_share&utm_medium=Android&utm_source=com.baiji.jianshu.ui.editor.EditorActivityV19)
