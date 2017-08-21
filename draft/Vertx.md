@@ -1,7 +1,14 @@
-# Vertx
+# 深入浅出Vert.x
 
-## Reactor & MultiReactor
+接触Vert.x已经有几个月的时间了，大大小小的应用也写了几个，用下来的感觉：这是一个简约而不简单的工具（注意是工具不是框架），基本能够满足服务端开发的所有幻想。
 
-## EventLoop
+1. 构建程序方式的改变。verticle + eventbus。比spring轻量很多，上手也非常快。开发体验也很好。
+
+2. 性能。
+
+3. 生态。
+
 
 ## IO 模型
+
+## Reactor & MultiReactor
