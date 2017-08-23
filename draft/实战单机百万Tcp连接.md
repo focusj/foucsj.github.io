@@ -4,7 +4,7 @@
 
 ### Server端服务器配置
 
-1. 修改系统最大文件打开数。
+1.修改系统最大文件打开数。
 
 临时性方案：`echo 1200000 > /proc/sys/fs/file-max`
 
@@ -19,30 +19,33 @@
 
 执行命令会输出三个数值，第一个表示当前系统已分配使用的文件数，第二个数为分配后已释放的（目前已不再使用），第三个数是系统最大文件数，等于file-max值。
 
-2. 修改进程最大文件打开数。
+2.修改进程最大文件打开数。
 
 这个参数默认值比较小，我的ubuntu14.04上默认是1024个。如果我们创建大量的链接，当超过这个值时将会抛出：[Too many open files](https://gist.github.com/focusj/bd3b6165364764d1b70814faf256c4e4)错误。
 
 首先，查看本机的默认最大文件打开数：`ulimit -n`。如果我们想创建一百万链接的话，这个值应该设置大于1000000的值。
 
-临时修改方案：
-```
-ulimit -Sn 1048576
-ulimit -Hn 1048576
-```
-我的ubuntu 17.04在做这个修改的时候遇到一点问题，总是设置不成功，最后发现是系统bug。
+临时修改方案，这种方案及时生效，但是重启系统后配置丢失。
 
-永久修改方案，需要修改/etc/security/limits.conf：
+```bash
+ulimit -Sn 1200000
+ulimit -Hn 1200000
 ```
-*         hard    nofile      1048576
-*         soft    nofile      1048576
-root      hard    nofile      1048576
-root      soft    nofile      1048576
-```
-`*`代表非root用户。修改之后需重启系统或者重新登录使配置生效。
 
-设置完成之后我们可以启动进程检测当前进程的最大文件打开数：`cat /proc/${pic}/limits`:
+永久修改方案，需要修改/etc/security/limits.conf，`*`代表非root用户。如果只想为某一个用户设置的话*换成用户名即可。
+
+```bash
+*         hard    nofile      1200000
+*         soft    nofile      1200000
+root      hard    nofile      1200000
+root      soft    nofile      1200000
 ```
+
+保存修改需重启系统或者重新登录使配置生效。
+
+我们可以启动一个进程来看一下它的最大文件打开数：`cat /proc/${pic}/limits`。以下数据是我启动的一个vertx Server进程：
+
+```bash
  ~/WorkSpace/Java/vert.x   sc  cat /proc/27136/limits 
 Limit                     Soft Limit           Hard Limit           Units     
 Max cpu time              unlimited            unlimited            seconds   
@@ -52,7 +55,7 @@ Max stack size            8388608              unlimited            bytes
 Max core file size        0                    unlimited            bytes     
 Max resident set          unlimited            unlimited            bytes     
 Max processes             46651                46651                processes 
-Max open files            1048576              1048576              files     
+Max open files            1200000              1200000              files     
 Max locked memory         65536                65536                bytes     
 Max address space         unlimited            unlimited            bytes     
 Max file locks            unlimited            unlimited            locks     
@@ -62,36 +65,38 @@ Max nice priority         0                    0
 Max realtime priority     0                    0                    
 Max realtime timeout      unlimited            unlimited            us     
 ```
-可以看到open files一行已经变成我们的预设值。
 
-在修改的时候需要注意一点，soft 不能大于hard值。
+可以看到open files一行已经变成我们的预设值。在修改的时候需要注意一点ulimit的之不能超过系统的max file size。
 
+我的ubuntu 17.04在做这个修改的时候遇到一点问题，设置完成后重启系统，启动程序发现最大打开文件总是4096。折腾了半天发现是ubuntu系统的[bug](https://bugs.launchpad.net/ubuntu/+source/lightdm/+bug/1627769)。解决方案来自[这里](https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu)。
 
+3.TCP协议栈优化
 
-1. 测试现象一：Too many open files。
+### Client端服务器配置
 
+1.修改端口范围。
 
+linux服务器上端口范围是0～65535，其中0～1024是给系统保留的端口范围。当客户端建立链接的时候会自动的选择一个本地可用的端口号，为了能够最大限度的利用机器上的端口，我们需要修改端口范围。
 
-查看系统最大文件打开数设置：
-cat /proc/sys/fs/file-nr
+通过命令`cat /proc/sys/net/ipv4/ip_local_port_range`我们可以查看当前的端口范围配置。
 
+修改的话我们在/etc/sysctl.conf中添加这行：`net.ipv4.ip_local_port_range= 1024 65535`，然后重载配置。这样的话一个client服务器可以创建六万多个链接（我本机测试64500个链接）。
 
-修改系统值：
-sudo vi /etc/sysctl.conf
+即便是这样我们也需要大概17台客户端测试机，这我上哪搞去啊。只能通过虚拟IP来弄了（系统知识严重匮乏，网上找了很长时间才搞定）。接下来我们来配置虚拟IP。配置虚拟IP我们可以通过ifconfig来搞。比如我们直接执行命令：`sudo ifconfig eth0:0 192.168.199.100 netmask 255.255.255.0`。eth0是真实网卡的名字，eth0:0是虚拟网卡的名字，后边是网卡绑定的IP。如果要想局域网访问，这个IP要和你真实网卡上的IP在同一网段。本地访问的话就随意了。
 
-fs.file-max = 1020000
-net.ipv4.ip_conntrack_max = 1020000
-net.ipv4.netfilter.ip_conntrack_max = 1020000
+还有另外一种方式是修改/etc/network/interfaces配置文件。我们添加一下条目：
+```
+auto eth0:0
+iface eth0 inet static
+address 192.168.1.201
+netmask 255.255.255.0
+broadcast 192.168.1.255
+gateway 192.168.1.0
+```
+添加完成后，重启network service：`sudo /etc/init.d/networking restart`。通过执行ifconfig便可看到这个虚拟IP。
 
-解决ubuntu 17.04中总是不能设置成功的问题：https://superuser.com/questions/1200539/cannot-increase-open-file-limit-past-4096-ubuntu
+为啥一个server不能创建超过65536个链接呢？这得需要先了解一下系统是如何标识一个网络套接字（socket）的。当系统创建一个网络套接字，会以{源IP地址，源端口，目的IP地址，目的端口}这样一个四元组来唯一表示这个链接。假设一个server拥有一个IP地址，而端口号最多就是65536个（极限）因此最大链接数也就固定了。如果我们在一个server上维持创建100M个链接，粗略估算一个IP 60000个链接，我们将需要17个IP地址。
 
+## 开始测试
 
-
-以上做法只是临时，系统下次重启，会还原。 更为稳妥的做法是修改/etc/sysctl.conf文件，增加一行内容
-
-net.ipv4.ip_local_port_range= 1024 65535
-
-每个IP只能创建大概6万多个connection（我本机测试64500个链接）。
-
-
-
+测试程序的都是用Vert.x实现的，源码[在此](https://github.com/focusj/vertx-tcp)。Vert.x
