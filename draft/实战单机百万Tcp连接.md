@@ -99,4 +99,76 @@ gateway 192.168.1.0
 
 ## 开始测试
 
-测试程序的都是用Vert.x实现的，源码[在此](https://github.com/focusj/vertx-tcp)。Vert.x
+测试程序的都是用Vert.x实现的，源码[在此](https://github.com/focusj/vertx-tcp)。代码是非常简单的，没必要说了。看看在测试过程中遇到的一些问题。
+
+1.当连接增加到23万多的时候，服务器hang住了，不在接受任何链接。
+
+```sh
+...
+231000 connections connects in...
+232000 connections connects in...
+```
+
+通过dmesg查看系统日志发了一些线索：
+
+```sh
+[13662.489289] TCP: too many orphaned sockets
+[13662.489299] TCP: too many orphaned sockets
+[13662.489304] TCP: too many orphaned sockets
+[13662.489311] TCP: too many orphaned sockets
+[13662.489317] TCP: too many orphaned sockets
+[13662.489323] TCP: too many orphaned sockets
+[13662.489330] TCP: too many orphaned sockets
+[13662.489335] TCP: too many orphaned sockets
+[13662.489341] TCP: too many orphaned sockets
+[13662.489348] TCP: too many orphaned sockets
+```
+
+网上搜了一下，这是系统耗光了socket内存，导致新连接进来时无法分配内存。需要调整一下tcp socket参数。在tcp_mem三个值分别代表low，pressure，high三个伐值。
+
+low：当TCP使用了低于该值的内存页面数时，TCP不会考虑释放内存。
+pressure：当TCP使用了超过该值的内存页面数量时，TCP试图稳定其内存使用，进入pressure模式，当内存消耗低于low值时则退出pressure状态。
+high：允许所有tcp sockets用于排队缓冲数据报的页面量，当内存占用超过此值，系统拒绝分配socket，后台日志输出"TCP: too many of orphaned sockets"。
+
+打开/etc/sysctl.conf，加入以下配置：
+
+```sh
+net.ipv4.tcp_mem = 786432 2097152 3145728 
+net.ipv4.tcp_rmem = 4096 4096 6291456
+net.ipv4.tcp_wmem = 4096 4096 6291456
+```
+
+tcp_mem 中的单位是页，1页=4096字节。所以我们设置的最大tcp 内存是12G。tcp_rmem，tcp_wmem单位是byte，所以最小socket读写缓存是4k。
+
+2.server 又卡住不创建链接了。
+```
+236000 connections connects in...
+237000 connections connects in...
+238000 connections connects in...
+```
+
+再次查看系统异常信息。
+
+```
+[ 1465.133062] nf_conntrack: nf_conntrack: table full, dropping packet
+[ 1465.133066] nf_conntrack: nf_conntrack: table full, dropping packet
+[ 1470.134845] net_ratelimit: 23807 callbacks suppressed
+[ 1470.134846] nf_conntrack: nf_conntrack: table full, dropping packet
+[ 1470.154131] nf_conntrack: nf_conntrack: table full, dropping packet
+[ 1470.154138] nf_conntrack: nf_conntrack: table full, dropping packet
+[ 1470.161674] nf_conntrack: nf_conntrack: table full, dropping packet
+```
+nf_conntrack就是linux NAT的一个跟踪连接条目的模块，nf_conntrack模块会使用一个哈希表记录TCP通讯协议的创建的链接记录，当这个哈希表满了的时候，便会导致：`nf_conntrack: table full, dropping packet`错误。那我们接下来修改一下这个值，还是打开/etc/sysctl.conf文件。
+加入以下记录：
+```sh
+net.netfilter.nf_conntrack_max = 1200000
+net.netfilter.nf_conntrack_buckets = 150000
+```
+这两个值表示conntrack的最大值，以及哈希的桶数。
+
+还有一个关于JVM的调优，这个也要注意，刚开始创建几万个的时候没什么影响，但是上20万之后GC影响逐渐显著。
+
+### 参考
+[使用四种框架分别实现百万websocket常连接的服务器](http://colobu.com/2015/05/22/implement-C1000K-servers-by-spray-netty-undertow-and-node-js/)
+[高性能网络编程7--tcp连接的内存使用](http://blog.csdn.net/russell_tao/article/details/18711023)
+[Conntrack Tuning](https://wiki.khnet.info/index.php/Conntrack_tuning)
