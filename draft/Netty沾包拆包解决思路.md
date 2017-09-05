@@ -1,0 +1,16 @@
+# Netty沾包拆包问题
+
+Tcp是基于流的协议，它传输的数据实际上是一些列的二进制字节码。在传输的过程中Tcp会根据缓冲区把数据切分成packet进行发送。这意味着在业务上一个独立的对象在传输过程中会发生以下几中情况：在一个packet中发送过来；分成多个packet发送过来；分多个packet且其中一部分和另外的对象包含在一个packet中。这就是所谓的沾包拆包问题。
+
+应对沾包和拆包问题通常应对方案有如下几种：
+1.固定消息大小。每个消息指定固定长度，如果不够则空格补全。
+2.在包尾添加换行符。ftp和Redis都采用了这样的做法。
+3.将消息分成消息头和消息体。消息头中包含了消息总长度。HTTP和MQTT协议采用了这种做法。
+
+Netty中预置了LineBasedFrameDecoder，DelimiterBasedFrameDecoder，FixedLengthFrameDecoder，使用这些Decoder都能够自动的解决沾包拆包问题。
+
+LineBasedFrameDecoder是以行为会查找buffer中的换行符"\n"或"\r\n"。然后计算buffer起始位置到换行符中间字节数是否大于指定的最大长度，如果大于则抛出异常TooLongFrameException，这段msg会被丢弃。
+
+DelimiterBasedFrameDecoder可以自定义分隔符，比LineBasedFrameDecoder更灵活一些。
+
+FixedLengthFrameDecoder则是按照固定长度来切分。
