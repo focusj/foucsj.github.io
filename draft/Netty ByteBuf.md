@@ -36,7 +36,16 @@ discardReadByte可以把读过的空间释放，这时buffer的可写空间和wr
 clear是把readerIndex和writerIndex重置到0，这时writable capacity恢复到原始值。
 
 ByteBuf的派生与复制
-派生操作會产生一个新的ByteBuf实例。这里的新指得是byte buf的引用是新的所有的index也是新的。但是它们共用着一套底层存储。派生函数：duplicate，slice，order，readSlice。
+派生操作會产生一个新的ByteBuf实例。这里的新指得是byte buf的引用是新的所有的index也是新的。但是它们共用着一套底层存储。派生函数：
+
+- duplicate()
+- slice()
+- slice(int, int)
+- readSlice(int)
+- retainedDuplicate()
+- retainedSlice()
+- retainedSlice(int, int)
+- readRetainedSlice(int)
 
 如果想要复制一个ByteBuffer请使用copy，这会完全的复制一个新的ByteBuf出来。
 
