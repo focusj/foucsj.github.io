@@ -13,11 +13,11 @@ Netty实现并扩展了Reactor模型，为了更好的了解EventLoop，我们�
 - Dispatcher：处理Handler的注册和反注册。当资源到达时负责把资源分发到相应的Handler中。
 - Handler：负责处理数据。
 
-在Netty中EventLoop兼负了Demultiplexer以及Dispatcher两个角色的事情。下边我们通过来看NioEventLoop的源码学习学习并了解Netty中的EventLoop。
+在Netty中EventLoop兼负了Demultiplexer以及Dispatcher两个角色。下边我们通过来看NioEventLoop的源码学习学习并了解Netty中的EventLoop。
 
 ## EventLoop源码
 
-NioEventLoop的核心方法是run()方法，一旦Netty程序启动之后，这个就一直循环跑下去，处理IO和task。
+NioEventLoop的核心方法是run()方法，一旦Netty程序启动之后，这个就一直循环跑下去，不间断的查询IO和处理task。
 
 ```java
 protected void run() {
@@ -42,7 +42,7 @@ protected void run() {
 
 ### 关于selectionStrategy
 
-首先我们来看第一个逻辑Select Strategy。这段逻辑主要控制这次循环是：跳过；执行select操作；处理selection key。判断依据是这样的：
+首先我们来看第一个逻辑Select Strategy。这段逻辑主要控制这次循环是执行：跳过；select操作；还是fall through。判断依据是这样的：
 
 ```
 public int calculateStrategy(IntSupplier selectSupplier, boolean hasTasks) throws Exception {
@@ -50,9 +50,9 @@ public int calculateStrategy(IntSupplier selectSupplier, boolean hasTasks) throw
 }
 ```
 
-如果当前EventLoop中有task，则执行selectorNowSupplier。selectorNowSupplier调用了selectNow。selectNow调用的是Selector的selectNow这个方法不会阻塞。执行完selectNow则跳出switch运行下边的processSelectedKeys逻辑。
+如果当前EventLoop中有未处理的task，则执行selectorNowSupplier。selectorNowSupplier调用了selectNow。selectNow调用的是Selector的selectNow这个非阻塞方法。执行完selectNow则跳出switch运行下边的processSelectedKeys逻辑。
 
-为了高效的利用CPU，EventLoop中只要taskQueue中有未消费的task则则优先消费task。
+为了高效的利用CPU，EventLoop中只要有未消费的task则优先消费task。
 
 Nio中Selector.select()是阻塞的，直到某个selection key可用select方法才会返回。Selector.selectNow()则检查自从上次select到现在有没有可用的selection key，然后立即返回。
 
@@ -81,9 +81,9 @@ int selectNow() throws IOException {
 
 select操作主要是检查当前的selection key，看哪些已available。
 
-上边我们说到了Selector.select操作是阻塞的，那么如果我不想等了，有招儿不？有，Selector.wakeup可以唤醒正在阻塞的select()操作。但是如果当前没有select操作，那么下次执行的select()或者selectNow()操作将被立即唤醒。
+上边我们说到了Selector.select操作是阻塞的，那么如果我不想等了，可以中断它吗？可以，Selector.wakeup可以唤醒正在阻塞的select()操作。但是如果当前没有select操作，执行了wakeUp操作，那么下次执行的select()或者selectNow()操作将被立即唤醒。
 
-但是Selector.wakeup是开销比较大的操作。不能每次都直接调用wakeup，于是NioEventLoop中声明了wakenUp(AtomicBoolean)字段，用于控制selector.wakeup()的调用。调用wakeup之前先`wakenUp.compareAndSet(false, true)`，如果set成功才执行Selector.wakeup()操作。
+但是Selector.wakeup是开销比较大的操作,不能每次都直接调用wakeup，于是NioEventLoop中声明了wakenUp(AtomicBoolean)字段，用于控制selector.wakeup()的调用。调用wakeup之前先`wakenUp.compareAndSet(false, true)`，如果set成功才执行Selector.wakeup()操作。
 
 当用户提交新的任务时executor.execute(...)，会触发wakeup操作。
 
@@ -95,15 +95,17 @@ if (wakenUp.get()) {
 }
 ```
 
-这段代码有一段非常长的注释，解释了为什么这段逻辑这样实现。并且给出了一种可能会发生竟态条件的实现：
+这段代码有一段非常长的注释，解释了为什么这段逻辑这样实现。并且给出了什么情况下会产生竞态条件：
+
 ```
 wakenUp.set(false)
 selector.select(...)
 ```
-wakenUp.set(false)执行后用户出发了wakeup操作，然后执行select操作，这时select将立即返回。直到下次循环把wakenUp重置为false，期间所有的wakenUp.compareAndSet(false, true)都是执行失败的，因为现在wakenUp的值是true。所以接下来的select()都不能被wakeup。
+
+wakenUp.set(false)执行后，用户出发了wakeup操作，然后执行select操作，这时select将立即返回。直到下次循环把wakenUp重置为false，期间所有的wakenUp.compareAndSet(false, true)都是执行失败的，因为现在wakenUp的值是true。所以接下来的select()都不能被wakeup。
 
 ### select 内部逻辑
-
+接下来我们看select是如何实现的：
 ```
 private void select(boolean oldWakenUp) throws IOException {
         Selector selector = this.selector;
@@ -161,7 +163,7 @@ private void select(boolean oldWakenUp) throws IOException {
 
 ```
 
-selectCnt用于标记select执行的次数，用于检测NIO的epoll bug。在这个方法尾部有一个判断：
+selectCnt标记select执行的次数，用于检测NIO的epoll bug。在这个方法尾部有一个判断：
 
 ```
  if (SELECTOR_AUTO_REBUILD_THRESHOLD > 0 &&
@@ -211,7 +213,7 @@ if (ioRatio == 100) {
 }
 ```
 
-NioEventLoop.run方法的后半段逻辑主要是processSelectedKeys（处理IO）和runAllTask（消费任务）。这里有一个参数用于控制处理这两种任务的时间配比：ioRatio。
+NioEventLoop.run方法的后半段逻辑主要是processSelectedKeys（处理IO）和runTasks（消费任务）。这里有一个参数用于控制处理这两种任务的时间配比：ioRatio。
 
 先来看一下processSelectedKeys，它的逻辑由processSelectedKeysOptimized和processSelectedKeysPlain实现，调用那个函数取决于你是否开启了`DISABLE_KEYSET_OPTIMIZATION`。如果开启了Selection 优化选项，则在创建Selector的时候以反射的方式把SelectedSelectionKeySet selectedKeys设置到selector中。具体实现在openSelector中，代码就不贴出来了。SelectedSelectionKeySet内部是基于Array实现的，而Selector内部selectedKeys是Set类型的，遍历效率Array效率更好一下。
 
@@ -257,7 +259,7 @@ private void processSelectedKeysPlain(Set<SelectionKey> selectedKeys) {
 }
 ```
 
-SelectionKey上边可以设置Attachment，一般情况下新的链接对象Channel会放到attachment。我们在遍历selectedKeys时，首先取出selection key上的attachment，key的类型可能是AbstractNioChannel和NioTask。根据不同的类型调用不同的处理函数。我们着重看处理channel的逻辑：
+SelectionKey上边可以挂载Attachment，一般情况下新的链接对象Channel会挂到attachment上。我们在遍历selectedKeys时，首先取出selection key上的attachment，key的类型可能是AbstractNioChannel和NioTask。根据不同的类型调用不同的处理函数。我们着重看处理channel的逻辑：
 
 1.如果selection key是：SelectionKey.OP_CONNECT，那表明这是一个链接操作。对于链接操作，我们需要把这个selection key从intrestOps中清除掉，否则下次select操作会直接返回。接下来调用finishConnect方法。
 
@@ -293,6 +295,6 @@ SelectionKey上边可以设置Attachment，一般情况下新的链接对象Chan
 
 ```
 
-整体来看NioEventLoop的实现也不复杂，主要就干了两件事情：select以及消费task。因为select操作是阻塞的（尽管设置了超时时间），每次执行select时都会检查是否有新的task，有则优先执行task。这么做也是做大限度的提高EventLoop的效率，减少阻塞时间。
+整体来看NioEventLoop的实现也不复杂，主要就干了两件事情：select IO以及消费task。因为select操作是阻塞的（尽管设置了超时时间），每次执行select时都会检查是否有新的task，有则优先执行task。这么做也是做大限度的提高EventLoop的吞吐量，减少阻塞时间。
 
 除了这两件事儿呢，NioEventLoop还解决了JDK中注明的EPoll bug。到此NioEventLoop源码分析完结。
