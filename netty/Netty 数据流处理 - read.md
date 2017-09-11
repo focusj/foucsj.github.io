@@ -95,7 +95,7 @@ public final void read() {
 ```
 
 这个方法主要的三个逻辑已经标识出来：
-1.分配ByteBuf（关于ByteBuf可以看我的另一篇文章）。
+1.分配ByteBuf（关于ByteBuf可以看我的[另一篇文章](http://www.jianshu.com/p/20329efe3ca4)）。
 2.读取的数据传递给Pipeline。
 3.告知Pipeline数据读取完毕。
 
