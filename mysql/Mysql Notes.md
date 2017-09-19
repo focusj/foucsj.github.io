@@ -82,3 +82,9 @@ You must increase this value if you are using large BLOB columns or long strings
 When you change the message buffer size by changing the value of the max_allowed_packet variable, you should also change the buffer size on the client side if your client program permits it. The default max_allowed_packet value built in to the client library is 1GB, but individual client programs might override this. For example, mysql and mysqldump have defaults of 16MB and 24MB, respectively. They also enable you to change the client-side value by setting max_allowed_packet on the command line or in an option file.
 
 The session value of this variable is read only. The client can receive up to as many bytes as the session value. However, the server will not send to the client more bytes than the current global max_allowed_packet value. (The global value could be less than the session value if the global value is changed after the client connects.)
+
+### dump by sql query
+
+```sql
+mysqldump -hrds-test-env.c8pr5ecdyixx.us-east-1.rds.amazonaws.com -ufmmc_user -pW9tLxnqg4OdU3l84 --databases fmmc --tables fmmc_mail_template --where "name like '%_ICO_%'" > dump.sql;
+```
