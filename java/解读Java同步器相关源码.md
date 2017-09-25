@@ -1,10 +1,12 @@
-# 拜神
+# 解读Java同步器相关源码
 
-![Doug Lea](../images/doug_lea.jpg)
+关于解读Java同步器相关源码的文章已经数不胜数, 但是经典的东西总能经的起反复的解读和学习. 最好每个人都能亲自翻着源码看一看, 肯定会有收获. 如果因为这篇文章促成你看源码, 那么这篇文章远超过了它内容的价值.
+
+文章包含五部分内容: AQS源码解读；ReentrantLock源码解读；ReentrantReadWriteLock源码解读；CountDownLatch源码解读；拜神仪式. 源码部分并不是面面俱到, 只是大致分析了AQS如何在每个类中发挥作用. 
 
 ## AQS部分
 
-AbstractQueuedSynchronizer是基于先进先出队列的同步器. Java并发包中的可重入锁(), 读写锁(), 信号量(), 闭锁()都基于AQS构建. 
+AbstractQueuedSynchronizer是基于自旋和先进先出队列的同步器. Java并发包中的可重入锁(ReentrantLock), 读写锁(ReentrantReadWriteLock), 信号量(Semaphore), 闭锁(CountDownLatch)都基于AQS构建. 
 
 1. AQS内部维护了一个先进先出的队列, 组成队列的节点由Node表示, Node大致结构如下: 
 ```java
@@ -29,7 +31,7 @@ static final class Node {
 其中waitStatus表示当前Node的状态. 举个例子, 假如一个竞争非常激烈的锁, 某个线程一段时间内未竞争到锁, 而取消了. 这是Node会被置为取消的状态. Node初始化时的值为0.
 
 CANCELLED: Thread已取消
-SIGNAL: Thread正等待被unpark(获取锁未成功进入队列等待的线程, 会被标记成SIGNAL, 线程也会通过LockSupport.lock被挂起)
+SIGNAL: Thread正等待被unpark(获取锁未成功进入队列等待的线程, 会被标记成SIGNAL, 线程也会通过LockSupport.park被挂起)
 CONDITION: Thread正在等待Condition, 在condition queue中
 PROPAGATE: 只可能头节点被设置该状态, 在releaseShared时需要被传播给后续节点.
 
@@ -48,7 +50,7 @@ PROPAGATE: 只可能头节点被设置该状态, 在releaseShared时需要被传
 
 ## ReentrantLock 部分
 
-这一部分来分析ReentrantLock的非公平模式下获取和释放锁的过程. 获取锁可以大致的分为两个阶段: 抢占式获取, 如果获取成功则立即返回；排队等待. 下边来看源码: 
+这一部分来分析ReentrantLock的非公平模式下获取和释放锁的过程. 先来说获取锁的过程, 获取锁可以大致的分为两个阶段: 抢占式获取, 如果获取成功则立即返回；排队等待. 下边来看源码: 
 
 ```java
 // 使用lock获取锁的时候, 如果锁处于空闲状态, 则获取成功立即返回.
@@ -72,7 +74,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 
 ```
 
-先尝试立即获取锁, 如果刚好抢上了, 则立即返回. 这时可能有其它线程等待, 也可能没有. 获取锁通过CAS修改AQS中state的状态. 如果获取成功则设置当前线程为owner.
+先尝试立即获取锁, 如果刚好抢上了, 则立即返回. 这时可能有其它线程等待, 也可能没有. 获取锁通过CAS修改AQS中state的状态. 如果修改成功, 表示获取锁成功, 设置当前线程为owner.
 
 非公平锁有着更好的性能, 想象一种情况, A线程释放锁, B线程正在等待被唤醒, 而这时C快速的获取锁并释放, 这一切都赶在B被唤醒之前. 而公平锁则无法达到这种共赢的局面. 
 
@@ -89,7 +91,7 @@ public final void acquire(int arg) { // arg = 1
 
 ```
 
-上边我们说过tryAcquire需要实现着重写, 我们拿到ReentrantLock.NonfaitLock的实现: 
+上边我们说过tryAcquire需要实现者重写, 我们拿到ReentrantLock.NonfaitLock的实现: 
 
 ```java
 protected final boolean tryAcquire(int acquires) {
@@ -97,7 +99,7 @@ protected final boolean tryAcquire(int acquires) {
 }
 ```
 
-接下俩这个方法调用的是父类Sync的nonfairTryAcquire方法. Sync继承了AQS, 而NonfaitLock继承子Sync. 
+这个方法调用的是父类Sync的nonfairTryAcquire方法. Sync继承了AQS, 而NonfaitLock继承自Sync. 
 
 ```java
 
@@ -151,7 +153,7 @@ private Node addWaiter(Node mode) {
 
 先尝试看能不能直接一次进队, 如果不行调用enq方法, 执行自旋逻辑去.
 
-雨露均沾的机会. 别忘了, 队列里还有很多人等着呢. 
+最后一次不排队获取锁的机会: 
 
 ```java
 final boolean acquireQueued(final Node node, int arg) { 
@@ -169,7 +171,7 @@ final boolean acquireQueued(final Node node, int arg) {
                 failed = false;
                 return interrupted;
             }
-            // 检查当前线程是否应该被中断 && 调用LockSupport.park成功则当前线程可中断.
+            // 检查当前线程是否应该被挂起 && 调用LockSupport.park成功则当前线程可被中断.
             if (shouldParkAfterFailedAcquire(p, node) &&
                 parkAndCheckInterrupt())
                 interrupted = true;
@@ -181,7 +183,7 @@ final boolean acquireQueued(final Node node, int arg) {
 }
 
 ```
-看for循环中的地一个if, 如果node的前一个节点是头节点(即正在占有锁), 并且tryAcquire获取锁成功, 说明当前线程成功的拿到了锁, 不需要被interrupt. 
+看for循环中的第一个if, 如果node的前一个节点是头节点(即正在占有锁), 并且tryAcquire获取锁成功, 说明当前线程成功的拿到了锁, 不需要被interrupt. 
 
 接着看shouldParkAfterFailedAcquire和parkAndCheckInterrupt两个方法: 
 ```java
@@ -213,11 +215,11 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
     return false;
 }
 ```
-如果前一个节点的waitStatus是SIGNAL, 表示这个节点也在等待被唤醒, 当前线程需要被interrupt, 老实排队. 如果waitStatus > 0(这个节点被取消了), 移出队列, 并检查是否有其他节点需要被移除. 否则的话设置前一个节点的waitStatus为SIGNAL. 因为这个方法调用是在一个for循环中, 会不停的被调用. 最终期望的结果是, 如果当前线程没有机会获取锁, 则中断该线程, 并到队列排队. 
+如果前一个节点的waitStatus是SIGNAL, 表示这个节点也在等待被唤醒, 当前线程需要被interrupt, 老实排队. 如果waitStatus > 0(这个节点被取消了), 移出队列, 并检查是否有其他节点需要被移除. 否则的话设置前一个节点的waitStatus为SIGNAL. 因为这个方法调用是在acquireQueued方法中的for循环中, 会不停的被调用. 最终期望的结果是, 如果当前线程没有机会获取锁, 则挂起该线程, 并到队列排队. 
 
-parkAndCheckInterrupt方法会调用`LockSupport.park(this)`中断当前线程.
+parkAndCheckInterrupt方法会调用`LockSupport.park(this)`挂起当前线程. 因为acquireQueued在一个for循环里边, 所以当线程被unpark的时候仍会接着执行重新获取锁的逻辑.
 
-所以回头再看acquire方法就可以用一句话概括: 如果获取成功则立即返回, 如果获取锁失败, 加入等待队列后调用selfInterrupt方法. 到此, 加锁的过程分析完成. 下边接着来看unlock的过程. 
+所以回头再看acquire方法就可以用一句话概括: 如果获取成功则立即返回, 如果获取锁失败, 加入等待队列, 然后后调用selfInterrupt方法. 到此, 加锁的过程分析完成. 下边来看unlock的过程. 
 
 ```java
 public void unlock() {
@@ -284,7 +286,7 @@ private void unparkSuccessor(Node node) { // node == head
         LockSupport.unpark(s.thread);
 }
 ```
-如果当前释放锁的节点waitStatus < 0, 则重置其状态为0. 然后拿到当前节点的下一个节点, 如果这个节点为null或者被cancel了, 则沿着队尾(可能等待队列断链了)找到最后一个等待节点并把这个节点包含的线程唤醒. 
+如果当前释放锁的节点waitStatus < 0, 则重置其状态为0(初始状态). 然后拿到当前节点的下一个节点, 如果这个节点为null或者被cancel了, 则沿着队尾(可能等待队列断链了)找到最后一个等待节点并把这个节点包含的线程唤醒. 释放锁包含释放锁, 唤醒下一个等待的线程.
 
 ## ReentrantReadWriteLock部分
 
@@ -345,11 +347,11 @@ final boolean readerShouldBlock() {
 
 跳到下一个if, 这有三个判断条件: 
 
-- 这个方法判断当前的获取读锁是否应该被block. 如果当前等待队列的头节点将要获取写锁, 那么这种情况下读锁需要把优先权让给它(只有这一种情况会, 比如写锁在队列中则会照常按序执行). 
-- 读锁的数量是否超了最大锁数限制65536.
+- 这个方法判断当前的获取读锁是否应该被block. 啥时候需要被block? 如果当前等待队列的头节点将要获取写锁, 那么这种情况下读锁需要把优先权让给它(只有这一种情况会, 比如写锁在队列中则会照常按序等待). 
+- 读锁的数量是否超了最大锁数限制65535.
 - CAS state是否成功
 
-如果判断为真, 则读锁获取所成功. 否则调用fullTryAcquireShared, 通过for循环来获取锁. 
+如果三个条件同时为真, 则读锁获取所成功. 否则调用fullTryAcquireShared, 通过自旋来获取锁. 
 
 如果仍然没有获取成功(比如, 写锁一直被占有, 或者等待队列头节点正在等待获取写锁), 则会执行doAcquireShared方法. 
 
@@ -384,17 +386,18 @@ private void doAcquireShared(int arg) {
 }
 ```
 
-这段代码我们比较熟悉, 首先把当前线程加到等待队列中. 如果当前节点的前一个节点是head, 则尝试CAS获取锁. 和重入锁不同的是获取成功之后执行的操作: 把等待的读锁都唤醒.
+这段代码我们比较熟悉, 首先把当前线程加到等待队列中. 如果当前节点的前一个节点是head, 则尝试CAS获取锁. 和重入锁不同的是获取成功之后执行的操作: set head 且 把等待的读锁都唤醒.
 
 unlock的过程, 还有写锁几乎和ReentrantLock一致的, 所以这里就不再次分析了. 
 
 ## CountDownLatch 部分
 
-CountDownLatch也就是我们常说的闭锁, 它能做的事情是这样的: 等待所有的线程到达. 比如我们把任务分配给了多个线程去执行, 等待所有的线程执行完汇总结果. 类似这种通知机制我们可以用闭锁实现. 实现闭锁的时候, 我们需要制定等待数, 也可以制定所有线程到达时出发的函数. 闭锁的两个核心方法是: 
-- countDown: 通知线程已就绪.
-- await: 等待所有的线程到达. 
+CountDownLatch也就是我们常说的闭锁, 它可以实现这样的功能: 等待所有的线程到达. 比如我们把任务分配给了多个线程去执行, 等待所有的线程执行完汇总结果. 类似这种通知机制我们可以用闭锁实现. 实现闭锁的时候, 我们需要指定等待数, 也可以指定所有线程到达时触发的回调函数. 闭锁的两个核心方法是:
 
-接下来我们分析下闭锁的实现. 首先从它的构造函数看起(说是看它, 其实为了看Sync :) : 
+- countDown: 通知线程已就绪.
+- await: 等待所有的线程到达.
+
+接下来我们分析下闭锁的实现. 首先从它的构造函数看起(说是看它, 其实为了看Sync): 
 ```java
 public CountDownLatch(int count) {
     if (count < 0) throw new IllegalArgumentException("count < 0");
@@ -430,7 +433,7 @@ private static final class Sync extends AbstractQueuedSynchronizer {
 }
 ```
 
-可以看到我们制定的闭锁数量最终通过setState赋值给了AQS的state. 接着我们分析countDown方法():
+CountDownLatch在构造的时候新建了一个Sync实例, 构造函数指定的闭锁数量最终通过setState赋值给了AQS的state. 接着我们分析countDown方法():
 
 ```java
 public void countDown() {
@@ -457,7 +460,8 @@ protected boolean tryReleaseShared(int releases) {
 }
 ```
 
-逻辑比较简单, countDown一次, state减少一次. 当state=0(所有线程到达), 执行doReleaseShared方法. 我们再来看下await方法: 
+逻辑比较简单, countDown一次, state减少一次. 当state=0(所有线程到达), 执行doReleaseShared方法. 我们再来看下await方法:
+
 ```java
 public void await() throws InterruptedException {
     sync.acquireSharedInterruptibly(1);
@@ -503,6 +507,12 @@ private void doAcquireSharedInterruptibly(int arg)
 
 ```
 
-当state > 0时, 主线程执行doAcquireSharedInterruptibly方法, 首先将当前线程添加到等待队列中, 然后线程被中断. 当最后一个线程执行到countDown时, 通过doReleaseShared方法把线程唤醒. 
+当state > 0时, 主线程执行doAcquireSharedInterruptibly方法(会检查线程是否中断), 首先将当前线程添加到等待队列中, 然后线程被中断. 当最后一个线程执行到countDown时, 通过doReleaseShared方法把所有等待线程唤醒.
 
 至此, AQS及其实现类都分析完毕. 文章中只是选择性的分析了一些场景, 并没有面面俱到. 所以, 如果想要更深入全面的了解, 还需自己去看代码, 以及Doug Lea大神的论文, 幸运的是ifeve已经有了中译[版本](http://ifeve.com/aqs/).
+
+## 拜神
+
+![Doug Lea](../images/doug_lea.jpg)
+
+上述我们所看的源码, 都出自Doug Lea之手, 针对AQS的设计还有一片[论文](http://gee.cs.oswego.edu/dl/papers/aqs.pdf), 大家可以找来看看.
