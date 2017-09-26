@@ -155,24 +155,7 @@ c)类和接口方法查找。
 
 类加载器是加载Class的工具类，ClassLoader有两类：Extension ClassLoader，BootStrap ClassLoader，Application ClassLoader。BootStrap是JVM的一部分，由C++实现。User ClassLoader是由Java语言实现，并继承自ClassLoader。
 
-### 字节码执行
 
-JVM栈帧结构：
-![jvm-stack.png](../images/jvm-stack.png)
-
-a)栈帧结构
-i.局部变量表。
-局部变量表用于存储了方法的参数和方法内的局部变量。方法在编译阶段就确定了表的大小，并写入到class文件中。
-局部变量表的容量以槽为单位。每个槽的基本容量是32个字节，java中除了Double和Long要用到两个槽，其他基本类型都是32个字节。
-
-![local-variables.png](../images/local-variables.png)
-
-ii.操作数栈。
-操作数栈是后如先出的数据结构。字节码的执行就是在操作数中执行的，操作数栈可以理解为线程工作的车间。而局部变量表可以当作仓库，当线程（worker）工作的时候需要什么东西会从仓库中要，然后加工完了之后再返回仓库。
-iii.动态链接
-每个栈帧都包含一个执行运行时常量池中该栈帧所属方法的引用，持有这个应用是为了支持方法调用过程中的动态链接。类比类加载阶段的链接操作，在函数执行的时候没有解析的链接仍然需要去做。有仍然
-iv.方法返回地址
-方法退出之后需要返回到方法被调用的位置，这样程序才能继续执行（这有可能是程序PC计数器的一个行号）。
 
 ### Java内存模型
 

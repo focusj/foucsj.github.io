@@ -12,13 +12,23 @@
 
 2012年04月~2014年09月   北京尤尼信息科技有限公司    全栈工程师
 
+## 技术总结
+
+- 熟悉Java和Scala语言.
+
+- 了解JVM及常见垃圾回收算法及工作原理.
+
+- 了解Java多线程, Actor模型. 了解异步编程.
+
+- 研究过Netty, Vert.x源码, 对其内部实现有一些了解.
+
 ## 项目经验
 
 ### 后端服务拆分
 
 *职责*: 负责人
 
-*技术选型*: Java8, Vert.x, JOOQ, MySQL, Redis, Docker
+*技术选型*: Java8, Vert.x, JOOQ, MySQL, Redis
 
 *项目背景*
 
@@ -93,18 +103,6 @@
 - 用ReactJS解决前端控件复用的问题.
 
 - 使用Redis做Session管理.
-
-## 技术总结
-
-- 熟悉Java, Scala语言.
-
-- 了解多线程编程, 异步编程.
-
-- 了解JVM及常见垃圾回收算法.
-
-- 缓存, RESTful API, 微服务, 分布式系统
-
-- 框架和工具： Spring Boot, Vert.x, Netty, Akka, Redis, RabbitMQ, Play FrameWork, MongoDB.
 
 ## 工作期望
 
