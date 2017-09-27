@@ -6,7 +6,7 @@ Netty实现并扩展了Reactor模型，为了更好的了解EventLoop，我们�
 
 ![Reactor-Model](../images/Reactor.png)
 
-在wiki对[reactor pattern](https://en.wikipedia.org/wiki/Reactor_pattern)的定义中，指出了一下集中角色：
+在wiki对[reactor pattern](https://en.wikipedia.org/wiki/Reactor_pattern)的定义中，指出了以下几种角色：
 
 - Resource：资源指的是提供系统输入或者消费系统输出的资源。在Netty中它指的是SocketChannel，它们应支持select。
 - Demultiplexer：事件分离器负责对资源进行轮寻等待，当资源ready的时候，分离器负责将数据发送给Dispatcher。
