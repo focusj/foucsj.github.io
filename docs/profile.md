@@ -14,7 +14,7 @@
 
 ## 技术总结
 
-- 熟悉Java和Scala语言.
+- 熟悉Java和Scala语言. 了解Python, JavaScript.
 
 - 了解JVM及常见垃圾回收算法及工作原理.
 
