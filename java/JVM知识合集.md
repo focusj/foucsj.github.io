@@ -68,7 +68,7 @@ ParNew：
 ![par-new](../images/parnew.png)
 
 Parallel Scavenge：
-Parallel是吞吐量优先的收集器，通过设置-XX:MaxGCPauseMillis最大gc停顿时间，-XX:GCTimeRatio gc时间和程序事件比率，来调整gc的事件。
+Parallel是吞吐量优先的收集器，通过设置-XX:MaxGCPauseMillis最大GC停顿时间，-XX:GCTimeRatio GC时间和程序时间比率，来调整GC的时间。比如设置time ratio = 19, 则gc时间 5% = 1 / (1 + 19). 使用这个垃圾收集器不需要手动的设置新生代老年代的大小, Eden与Suvior的比例, 以及晋升老年代对象的年龄. JVM会收集性能信息动态的调整这些参数. 
 
 ![parallel](../images/parallel.png)
 
@@ -82,11 +82,20 @@ Parallel Old:
 
 CMS:
 
-垃圾收集线程数：（cpus + 3） / 4
+垃圾收集线程数：（cpus + 3） / 4. 
+
+CMS的缺点: 无法处理浮动垃圾, 就是在并发清除阶段产生的垃圾. 因为并发清除阶段程序仍在继续执行, 所以CMS一般等到空间使用68%时就会触发垃圾收集. 这个值可以通过: -XX:CMSInitiatingOccupancyFraction调整. 再一个缺点就是会产生碎片, 因此提供了-XX:CMSCompactAtFullGCCollection, 当执行一次Full GC时进行一次空间压缩. 还有一个参数是-XX:CMSFullGCsBeforeCompact, 表示多少次不压缩, 则执行一次压缩.
 
 ![cms](../images/cms.png)
 
 G1：
+
+特点: 充分利用多核的优势；分代收集；空间整合, 采用标记整理算法；可预测的停顿.
+
+G1收集器把堆内存分成了多个大小相等的空间Region, G1跟踪各个Region里边垃圾堆积的价值大小(回收空间的大小以及花费的时间的经验值), 并在后端维护一个列表, 每次根据允许的时间收集价值最大的Region.
+
+G1执行的过程: 初始标记, 并发标记, 最终标记, 筛选回收.
+
 ![g1](../images/G1.png)
 
 ### JVM的对象分配策略
