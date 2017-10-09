@@ -28,10 +28,10 @@ static final class Node {
 }
 ```
 
-其中waitStatus表示当前Node的状态. 举个例子, 假如一个竞争非常激烈的锁, 某个线程一段时间内未竞争到锁, 而取消了. 这是Node会被置为取消的状态. Node初始化时的值为0.
+其中waitStatus表示当前Node的状态. 举个例子, 假如一个竞争非常激烈的锁, 某个线程一段时间内未竞争到锁, 而取消了. 这时Node会被置为取消的状态. Node初始化时的值为0.
 
 CANCELLED: Thread已取消
-SIGNAL: Thread正等待被unpark(获取锁未成功进入队列等待的线程, 会被标记成SIGNAL, 线程也会通过LockSupport.park被挂起)
+SIGNAL: Thread正等待获取锁(获取锁未成功进入队列等待的线程, 会被标记成SIGNAL, 线程也会通过LockSupport.park被挂起)
 CONDITION: Thread正在等待Condition, 在condition queue中
 PROPAGATE: 只可能头节点被设置该状态, 在releaseShared时需要被传播给后续节点.
 
@@ -138,7 +138,7 @@ private Node addWaiter(Node mode) {
     // Try the fast path of enq; backup to full enq on failure
     Node pred = tail;
     // 先尝试直接入队列
-    if (pred != null) { 
+    if (pred != null) {
         node.prev = pred;
         if (compareAndSetTail(pred, node)) {
             pred.next = node;
@@ -219,7 +219,7 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
 
 parkAndCheckInterrupt方法会调用`LockSupport.park(this)`挂起当前线程. 因为acquireQueued在一个for循环里边, 所以当线程被unpark的时候仍会接着执行重新获取锁的逻辑.
 
-所以回头再看acquire方法就可以用一句话概括: 如果获取成功则立即返回, 如果获取锁失败, 加入等待队列, 然后后调用selfInterrupt方法. 到此, 加锁的过程分析完成. 下边来看unlock的过程. 
+所以回头再看acquire方法就可以用一句话概括: 如果获取成功则立即返回, 如果获取锁失败, 加入等待队列, 然后调用selfInterrupt方法. 到此, 加锁的过程分析完成. 下边来看unlock的过程. 
 
 ```java
 public void unlock() {
@@ -286,7 +286,7 @@ private void unparkSuccessor(Node node) { // node == head
         LockSupport.unpark(s.thread);
 }
 ```
-如果当前释放锁的节点waitStatus < 0, 则重置其状态为0(初始状态). 然后拿到当前节点的下一个节点, 如果这个节点为null或者被cancel了, 则沿着队尾(可能等待队列断链了)找到最后一个等待节点并把这个节点包含的线程唤醒. 释放锁包含释放锁, 唤醒下一个等待的线程.
+如果当前释放锁的节点waitStatus < 0, 始则重置其状态为0(初状态). 然后拿到当前节点的下一个节点, 如果这个节点为null或者被cancel了, 则沿着队尾(可能等待队列断链了)找到最后一个等待节点并把这个节点包含的线程唤醒. 释放锁包含释放锁, 唤醒下一个等待的线程.
 
 ## ReentrantReadWriteLock部分
 
@@ -343,7 +343,16 @@ final boolean readerShouldBlock() {
 }
 ```
 
-通过exclusiveCount方法可以获取当前独占锁(即写锁)的数量. 如果当前已经有写锁, 而且锁定的线程不是当前线程, 直接返回失败. 对于读写锁, 如果当前有线程占有写锁, 则读锁不能被获取. 
+通过exclusiveCount方法可以获取当前独占锁(即写锁)的数量. 如果当前已经有写锁, 而且锁定的线程不是当前线程, 直接返回失败. 对于读写锁, 在一种情况下会发生写锁降级:
+
+```java
+    writeLock.lock();
+    readLock.lock();
+    readLock.unlock();
+    writeLock.unlock();
+```
+
+首先, 线程获取写锁, 然后线程再获取读锁, 这时写锁会降级为读锁. 反过来如果先获取读锁, 然后在获取写锁这是则会产生死锁. 
 
 跳到下一个if, 这有三个判断条件: 
 
