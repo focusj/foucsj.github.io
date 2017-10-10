@@ -14,13 +14,17 @@
 
 ## 技术总结
 
-- 熟悉Java和Scala语言. 了解Python, JavaScript.
+- 熟练使用Java和Scala, 了解Python和JavaScript.
 
-- 了解JVM及常见垃圾回收算法及工作原理.
+- 熟悉缓存和消息队列的用法. 了解Redis和RabbitMQ的使用.
 
-- 了解Java多线程, Actor模型. 了解异步编程.
+- 了解多线程编程和异步编程. 对Java多线程, Actor编程有一定的使用经验.
 
-- 研究过Netty, Vert.x源码, 对其内部实现有一些了解.
+- 了解JVM, 了解常见垃圾回收算法及工作原理.
+
+- 研究过Netty, Vert.x源码, 对其内部实现有一定了解.
+
+- 了解微服务架构, REST API设计.
 
 ## 项目经验
 

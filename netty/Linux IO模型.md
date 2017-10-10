@@ -29,13 +29,13 @@
 
 ![blocking-io-model](../images/blocking-io-model.png)
 
-#### 异步非阻塞（O_NONBLOCK）
+#### 异步阻塞（O_NONBLOCK）
 
 在linux中我们通过设置O_NONBLOCK，打开其非阻塞模式。这样用户进程发其read操作，如果内核中数据还没有ready，会立即返回错误(E_WOULDBLOCK)，应用程序可以一直循环这个操作知道数据可用。然后程序再次发起一个系统调用把数据拷贝到用户空间（这个阶段仍会阻塞用户进程）。这种IO模型我们可以记为：异步-阻塞IO。
 
 #### 异步阻塞（多路复用）
 
-linux中通过select，poll，epoll实现多路复用技术。用户进程通过讲fd传递给select或者poll系统调动，等待其中的任何一个fd变成就绪状态。select和poll是顺序的扫描fd是否就绪，并且支持的fd数量有限(用数组保存fd)。epoll通过时间机制，当fd就绪时出发回调函数。select过程用户进程仍会被阻塞，当数据ready向用户空间拷贝数据的时候用户进程再次阻塞。这种IO模型我们可以记为：同步-阻塞IO。
+linux中通过select，poll，epoll实现多路复用技术。用户进程通过讲fd传递给select或者poll系统调动，等待其中的任何一个fd变成就绪状态。select和poll是顺序的扫描fd是否就绪，并且支持的fd数量有限(用数组保存fd)。epoll通过事件机制，当fd就绪时出发回调函数。select过程用户进程仍会被阻塞，当数据ready向用户空间拷贝数据的时候用户进程再次阻塞。这种IO模型我们可以记为：同步-阻塞IO。
 
 这种IO模型的优势在于处理大量的fd，例如Netty中就实现了基于Select和Epoll的两种IO模型。
 

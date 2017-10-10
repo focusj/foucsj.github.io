@@ -215,7 +215,7 @@ if (ioRatio == 100) {
 
 NioEventLoop.run方法的后半段逻辑主要是processSelectedKeys（处理IO）和runTasks（消费任务）。这里有一个参数用于控制处理这两种任务的时间配比：ioRatio。
 
-先来看一下processSelectedKeys，它的逻辑由processSelectedKeysOptimized和processSelectedKeysPlain实现，调用那个函数取决于你是否开启了`DISABLE_KEYSET_OPTIMIZATION`。如果开启了Selection 优化选项，则在创建Selector的时候以反射的方式把SelectedSelectionKeySet selectedKeys设置到selector中。具体实现在openSelector中，代码就不贴出来了。SelectedSelectionKeySet内部是基于Array实现的，而Selector内部selectedKeys是Set类型的，遍历效率Array效率更好一下。
+先来看一下processSelectedKeys，它的逻辑由processSelectedKeysOptimized和processSelectedKeysPlain实现，调用那个函数取决于你是否开启了`DISABLE_KEYSET_OPTIMIZATION`。如果开启了Selection 优化选项，则在创建Selector的时候以反射的方式把SelectedSelectionKeySet selectedKeys设置到selector中。具体实现在openSelector中，代码就不贴出来了。SelectedSelectionKeySet内部是基于Array实现的，而Selector内部selectedKeys是Set类型的，遍历效率Array效率更好一些。
 
 我们来分析processSelectedKeysPlain方法：
 
@@ -261,7 +261,7 @@ private void processSelectedKeysPlain(Set<SelectionKey> selectedKeys) {
 
 SelectionKey上边可以挂载Attachment，一般情况下新的链接对象Channel会挂到attachment上。我们在遍历selectedKeys时，首先取出selection key上的attachment，key的类型可能是AbstractNioChannel和NioTask。根据不同的类型调用不同的处理函数。我们着重看处理channel的逻辑：
 
-1.如果selection key是：SelectionKey.OP_CONNECT，那表明这是一个链接操作。对于链接操作，我们需要把这个selection key从intrestOps中清除掉，否则下次select操作会直接返回。接下来调用finishConnect方法。
+1.如果selection key是：SelectionKey.OP_CONNECT，那表明这是一个连接操作。对于连接操作，我们需要把这个selection key从intrestOps中清除掉，否则下次select操作会直接返回。接下来调用finishConnect方法。
 
 2.如果selection key是：SelectionKey.OP_WRITE。则执行flush操作，把数据刷到客户端。
 
