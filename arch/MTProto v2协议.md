@@ -1,23 +1,44 @@
-﻿## MTProto v2 协议
+﻿# MTProto V2 协议
 
+## 编码层(Encoding)
 
+MTProto的数据类型是从ProtoBuf借鉴过来的.
 
-### 编码层(Encoding):
+varint - unsigned integer
 
-使用protobuf的协议
+Each byte in a varint, except the last byte, has the most significant bit (msb) set – this indicates that there are further bytes to come. The lower 7 bits of each byte are used to store the two's complement representation of the number in groups of 7 bits, least significant group first.
 
+int - signed 32bit integer
 
+int value is encoded as 4-byte big endian signed integer
 
-### 链接层(Connection Level):
+long - signed 64bit intenger
+
+long value is encoded as 8-byte big endian signed integer
+
+byte - unsigned byte
+
+byte value is encoded as single big endian byte
+
+bytes - byte array
+
+bytes is encoded as varint of bytes length and raw bytes
+
+longs - long array
+
+bytes is encoded as varint of longs length and then raw long values
+
+string - byte array that contains UTF-8 text
+
+string is encoded in the same way as bytes
+
+## 链接层(Connection Level)
 
 客户端链接到服务端之后, 首要任务是进行握手操作, 握手成功之后链接成功建立. Client端无需等待握手结果即可发送数据(*服务端会缓存数据吗, 还是直接drop??* -服务端会把msg stash起来, 然后在逐步).
 
-
-
 通道传输单位是Frame. Frame中的header字段标记了不同的Frame类型, 如果header为0, payload需要发送到transport level. 其他的Frame都是信号帧(signaling message). Frame结构的定义是:
 
-```
-
+```java
 Frame {
 
   // Index of package starting from zero.
@@ -164,25 +185,16 @@ HandshakeResponse {
 
 ```
 
-
-
-### 传输层(Transport Level):
+## 传输层(Transport Level)
 
 目标:
 
-  - Fast connection recreation(链接快速重建)
-
-  - Minimize traffic amount(流量优化)
-
-  - Connection-agnostic package transmition(链接无关的消息传递)
-
-  - Recovering after connection die(链接go die恢复)
-
-  - Recovering after server die(服务器go die恢复)
-
-  - Work in networks that work on buggy hardware that breaks connection in random situations(适应弱网环境)
-
-
+- Fast connection recreation(链接快速重建)\
+- Minimize traffic amount(流量优化)\
+- Connection-agnostic package transmition(链接无关的消息传递)\
+- Recovering after connection die(链接go die恢复)\
+- Recovering after server die(服务器go die恢复)\
+- Work in networks that work on buggy hardware that breaks connection in random situations(适应弱网环境)
 
 传输层消息结构定义如下:
 
@@ -532,9 +544,7 @@ Container {
 
 ```
 
-
-
-### 同步层(Basic Sync Level)
+## 同步层(Basic Sync Level)
 
 同步层是和后端Rpc API对应的, 向后端的api对应的是RpcRequest中的methodId字段. 同步层的消息会被封装到ProtoRpcRequest/ProtoRpcResponse(Transport层消息结构).
 
@@ -659,4 +669,3 @@ Push {
 }
 
 ```
-
