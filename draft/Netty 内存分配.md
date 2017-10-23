@@ -1,26 +1,23 @@
+# Netty 内存分配
 
-jemalloc implements three main size class categories as follows (assuming default configuration on a 64-bit system):
+## Jemalloc 算法
 
-Small: [8], [16, 32, 48, ..., 128], [192, 256, 320, ..., 512], [768, 1024, 1280, ..., 3840]
-Large: [4 KiB, 8 KiB, 12 KiB, ..., 4072 KiB]
-Huge: [4 MiB, 8 MiB, 12 MiB, ...]
+1. 把内存进行分块使用. 按照内存块的大小可以分为Arena, Chunk, Run. 默认情况下会分配两倍CPU个数的Arena.
+2. 多线程优化. 当线程申请内存的时候, 按照Round-Robbin算法查找可用的Arena. 这样确保每个Arena上的线程基本是固定的.
+3. 线程缓存. 对于小内存的分配优先从线程本地缓存查分配, 如果没有则向新的Chunk申请.
 
+## Netty内存的分配
 
-jemalloc有2个重点（1、使用arena;2、使用thread cache）
+Arena的结构:
+- tinySubPagePool: 用于分配小于512 Byte的内存. 分配额度从16 Byte开始, 每次增长16 Byte.
+- smallSubPagePool: 用于分配大于512 Byte的内存. 分配额度从512开始, 每次按倍增长.
+- q050: PoolChunkList
+- q025: PoolChunkList
+- q000: PoolChunkList
+- qinit: PoolChunkList
+- q075: PoolChunkList
+- q100: PoolChunkList
 
+内存的使用分为3个档: 大于 8K, 大于 512Byte, 小于512 Byte. 当大于8K时则从chunk list中查找. 查找顺序为q050 > q025 > q000 > qinit > q075 > q100. 
 
-
-
-PoolChunk默认的最小内存page是8k，内存map的高度是11层。这么做的好处是可以根据分配的内存快速定位在那分配。
-
-PoolChunk在初始话的时候：chunkSize：16777216，pageSize：8192，maxOrder：11
-2^11(mem pages) * 8192(8K) = 16777216(16M)
-
-
-1) memoryMap[id] = depth_of_id  => it is free / unallocated。(没有被分配过)
-2) memoryMap[id] > depth_of_id  => at least one of its child nodes is allocated, so we
-cannot allocate it, but some of its children can still be allocated based on their availability。(如果memoryMap[id] > depth_of_id说明这个节点的字节点已经被用过，不能承担承诺的全部内存。但是它的孩子还可用，所以它的深度降了一级。)
-3) memoryMap[id] = maxOrder + 1 => the node is fully allocated & thus none of its children can be allocated, it is thus marked as unusable。(已经超过了最大深度，抛错)
-
-内存的回收
-Thread cache
+PoolChunk是以Page组成的, 大小是8K, 每个PoolChunk由2048个Page组成, 并以一个数状结构组织这些节点. 父节点同时管理它字节点的内存. 如果分配8K的内存则从11层开始查找, 并依次类推. 如果某个节点已经被分配, 则它的节点高度加一. 
