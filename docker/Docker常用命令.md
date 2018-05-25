@@ -6,7 +6,7 @@
 
 - Docker查看某个容器的资源占用：`docker stats $cid`
 
-- 启动redis并绑定localhost：`docker run --name fj-redis -p 127.0.0.1:6379:6379 -d redis`
+- 启动redis并绑定localhost：`docker run --name fj-redis -p 127.0.0.1:6379:6379 -d --restart=always redis`
 
 - docker启动redis-cli：`docker run -it --link fj-redis:redis --rm redis redis-cli -h redis -p 6379`
 
