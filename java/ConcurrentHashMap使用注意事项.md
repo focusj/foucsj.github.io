@@ -22,7 +22,7 @@ private MetricHolder getOrCreate() {
 final V putVal(K key, V value, boolean onlyIfAbsent) {
 ```
 
-利用这个参数我们能控制只有当前key为空的情况下才执行put动作，否则返回当前key对应的value。好吧，这会儿应该可以想起JDK8提供了putIfAbsent这个方法。汗。。。所以这个方法等价于：
+利用这个参数我们能控制只有当前key为空的情况下才执行put动作，否则返回当前key对应的value。好吧，这会儿应该可以想起JDK8提供了putIfAbsent这个方法。汗。。。这个方法就等价于：
 
 ```java
  if (!map.containsKey(key))
