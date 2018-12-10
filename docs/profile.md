@@ -16,7 +16,7 @@
 
 ## 技术总结
 
-- 熟练使用Java, Scala, Golang, 了解Golang,Python,JavaScript. 理解面向对象和函数式编程思想.
+- 熟练使用Java, Scala, Golang, 了解Python, JavaScript. 理解面向对象和函数式编程思想.
 - 熟悉多线程编程和异步编程, 了解多种并发模型. 熟练使用Java多线程和Akka框架.
 - 了解JVM; 了解常见垃圾回收算法及工作原理.
 - 了解微服务架构, 及REST API设计.
