@@ -16,7 +16,7 @@
 
 ## 技术总结
 
-- 熟练使用Java和Scala, 了解Golang,Python,JavaScript. 理解面向对象和函数式编程思想.
+- 熟练使用Java, Scala, Golang, 了解Golang,Python,JavaScript. 理解面向对象和函数式编程思想.
 - 熟悉多线程编程和异步编程, 了解多种并发模型. 熟练使用Java多线程和Akka框架.
 - 了解JVM; 了解常见垃圾回收算法及工作原理.
 - 了解微服务架构, 及REST API设计.
@@ -26,9 +26,9 @@
 
 ### 摩拜监控系统
 
-*职责*: 摩拜监控系统核心开发
+*职责*: 负责设计摩拜监控系统和核心功能开发
 
-*技术选型*：Java8，Golang，SpringBoot，gRPC，InfluxDB
+*技术选型*：Java8，Golang，SpringBoot，gRPC，InfluxDB，Istio，Kubernetes
 
 *项目背景*
 
@@ -38,6 +38,7 @@
 - 数据上报服务基于gRPC和Spring Boot开发，对外提供gRPC和http两种协议接口。同时还封装了Java SDK和Spring Starter，方便业务开发者使用。另外服务端还实现了鉴权和流量控制功能。数据上报服务和SDK端保持定时的心跳。一方面可以用于检测应用的健康状况，另一方面还可以和服务端同步配置信息。实现动态的调整客户端指标聚合的时间维度。
 - 服务端拿到数据后，push数据到Kafka，实现不同的Consumer来负责数据清洗，元数据存储等工作。第一个版本的报警元数据存储Consumer是这样实现的：判断元数据存在依赖于数据库，然后使用多线程实提升处理速度。但由于数据量太大这个实现导致了队列积压，引发了OOM，后来引入布隆过滤器对这块的逻辑进行了优化。
 2. 策略模块使用Golang开发，借鉴了小米Falcon的思路。并做了以下优化：实现了同比功能；优化内存的使用；添加新策略可立即生效。
+3. service mesh改造。
 
 ### 后端服务拆分
 
