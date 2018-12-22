@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>个人信息</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs2015.css */ /* * Visual Studio 2015 dark style * Author: Nicolas LLOBERA <nllobera@gmail.com> */ .hljs-keyword, .hljs-literal, .hljs-symbol, .hljs-name { color: #569CD6; } .hljs-link { color: #569CD6; text-decoration: underline; } .hljs-built_in, .hljs-type { color: #4EC9B0; } .hljs-number, .hljs-class { color: #B8D7A3; } .hljs-string, .hljs-meta-string { color: #D69D85; } .hljs-regexp, .hljs-template-tag { color: #9A5334; } .hljs-subst, .hljs-function, .hljs-title, .hljs-params, .hljs-formula { color: #DCDCDC; } .hljs-comment, .hljs-quote { color: #57A64A; font-style: italic; } .hljs-doctag { color: #608B4E; } .hljs-meta, .hljs-meta-keyword, .hljs-tag { color: #9B9B9B; } .hljs-variable, .hljs-template-variable { color: #BD63C5; } .hljs-attr, .hljs-attribute, .hljs-builtin-name { color: #9CDCFE; } .hljs-section { color: gold; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; } /*.hljs-code { font-family:'Monospace'; }*/ .hljs-bullet, .hljs-selector-tag, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo { color: #D7BA7D; } .hljs-addition { background-color: #144212; display: inline-block; width: 100%; } .hljs-deletion { background-color: #600; display: inline-block; width: 100%; } /* From https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs.css */ /* Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name> */ .vscode-light .hljs-function, .vscode-light .hljs-params { color: inherit; } .vscode-light .hljs-comment, .vscode-light .hljs-quote, .vscode-light .hljs-variable { color: #008000; } .vscode-light .hljs-keyword, .vscode-light .hljs-selector-tag, .vscode-light .hljs-built_in, .vscode-light .hljs-name, .vscode-light .hljs-tag { color: #00f; } .vscode-light .hljs-string, .vscode-light .hljs-title, .vscode-light .hljs-section, .vscode-light .hljs-attribute, .vscode-light .hljs-literal, .vscode-light .hljs-template-tag, .vscode-light .hljs-template-variable, .vscode-light .hljs-type, .vscode-light .hljs-addition { color: #a31515; } .vscode-light .hljs-deletion, .vscode-light .hljs-selector-attr, .vscode-light .hljs-selector-pseudo, .vscode-light .hljs-meta { color: #2b91af; } .vscode-light .hljs-doctag { color: #808080; } .vscode-light .hljs-attr { color: #f00; } .vscode-light .hljs-symbol, .vscode-light .hljs-bullet, .vscode-light .hljs-link { color: #00b0e8; } .vscode-light .hljs-emphasis { font-style: italic; } .vscode-light .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <h2 id="%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF">个人信息</h2>
+<ul>
+<li>姓名：王康；性别：男；生日：1989/12/24；婚否：已婚；</li>
+<li>电话：18610842638； Email：focusj.x@gmail.com；</li>
+<li>毕业院校：河北大学工商学院（本科）；毕业时间：2012/7/01；专业：信息管理与信息系统；</li>
+<li>博客：<a href="http://www.jianshu.com/users/13542edebea3/">http://www.jianshu.com/users/13542edebea3/</a></li>
+</ul>
+<h2 id="%E5%B7%A5%E4%BD%9C%E7%BB%8F%E5%8E%86">工作经历</h2>
+<h3 id="1-2017%E5%B9%B411%E6%9C%88%E4%BB%8A%E5%8C%97%E4%BA%AC%E6%91%A9%E6%8B%9C%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">1. 2017年11月~今：北京摩拜信息技术有限公司</h3>
+<p>工作职责：</p>
+<ul>
+<li>负责从零搭建公司业务监控系统。包括：系统架构设计，子系统开发以及项目进度把控。</li>
+<li>帮助各个业务系统对接监控和报警需求。</li>
+</ul>
+<h3 id="2-2016%E5%B9%B403%E6%9C%882017%E5%B9%B411%E6%9C%88%E5%8C%97%E4%BA%AC%E7%AC%AC%E4%B8%89%E7%9F%B3%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">2. 2016年03月~2017年11月：北京第三石信息科技有限公司</h3>
+<p>工作职责：</p>
+<ul>
+<li>后端核心开发，主要负责后端系统的设计和开发。</li>
+<li>系统重构和微服务架构改造。</li>
+</ul>
+<h3 id="3-2014%E5%B9%B410%E6%9C%882015%E5%B9%B411%E6%9C%88thoughtworks">3. 2014年10月~2015年11月：ThoughtWorks</h3>
+<p>工作职责：</p>
+<ul>
+<li>业务系统全栈开发</li>
+</ul>
+<h3 id="4-2012%E5%B9%B404%E6%9C%882014%E5%B9%B409%E6%9C%88%E5%8C%97%E4%BA%AC%E5%B0%A4%E5%B0%BC%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">4. 2012年04月~2014年09月：北京尤尼信息科技有限公司</h3>
+<p>工作职责：</p>
+<ul>
+<li>负责公司后端系统的开发和维护。</li>
+<li>兼职项目经理，负责和产品经理对接和梳理需求，制定迭代计划。</li>
+</ul>
+<h2 id="%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93">技术总结</h2>
+<ul>
+<li>熟练使用Java，Scala，Golang，了解面向对象和函数式编程思想.</li>
+<li>熟悉多线程编程和异步编程，了解多种并发模型。了解Java多线程工具库，Akka，Netty，Vert.x框架。</li>
+<li>了解微服务架构，ServiceMesh。了解SpringCloud和Istio框架的使用。</li>
+<li>了解Redis，RabbitMQ，Kafka，MySQL，MongoDB的使用。</li>
+<li>了解Docker和Kubernetes的使用，有一定的DevOps经验。</li>
+<li>了解敏捷项目开发，了解软件的CI/CD流程。</li>
+</ul>
+<h2 id="%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C">项目经验</h2>
+<h3 id="%E6%91%A9%E6%8B%9C%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F">摩拜监控系统</h3>
+<p><em>项目描述</em></p>
+<p>从零开始搭建摩拜内部监控系统，目前所有的核心服务都已接入监控服务。每天监控系统处理1亿+指标信息，发出有效报警上百条。</p>
+<p><em>项目职责</em></p>
+<ol>
+<li>从零搭建公司业务监控系统，协助所有核心业务系统均已接入监控服务，现在每天处理1亿+指标量。</li>
+<li>使用Golang开发基于内存的实时报警策略计算模块，报警策略表达式可以支持配置阈值和同环比，同时还提供了降噪功能，防止瞬间抖动造成误报。实时性方面：一个异常指标从应用端上报到报警发出整个链路耗时可控制在1min之内。</li>
+<li>基于influx-proxy的做了InfluxDB双区多实例高可用方案。在原有开源项目上开发了动态更新数据节点配置的功能。</li>
+<li>优化数据消费服务指标判重逻辑。原有的实现方式是：直接查询MySQL数据库，程序使用线程池提升处理能力。但由于数据量太大导致了线程池队列积压，引发了OOM。通过引入布隆过滤器重新优化了这部分实现，不仅解决了原有问题还加快了系统处理速度。</li>
+<li>使用Golang和Mux开发了内部短域名服务，上线半月的时间已经生成了7000多万个code。</li>
+<li>基于Kubernetes和Istio的ServiceMesh改造，并且基于Kubernetes和Istio API实现了灰度发布工具。</li>
+</ol>
+<p><em>技术栈</em>：SpringCloud，Java8，Golang，gRPC，Istio，Kubernetes，InfluxDB，ElasticSearch，Grafana，Telegraf。</p>
+<h3 id="%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F">订单系统</h3>
+<p><em>项目描述</em></p>
+<p>北京第三石在美国市场做C2C业务，主要是线下二手物品交易。为了让用户交易更安全方便，公司要做担保交易和物流。</p>
+<p><em>项目职责</em>：</p>
+<ol>
+<li>引入Akka框架实现异步编程（将业务流程中的非关键流程异步话，比如发送push，订单扣费邮件等都可异步化），缩短服务的响应时间：订单接口从2~3s缩短到1s内。</li>
+<li>引入Spring StateMachine重构订单状态流转逻辑，增强了程序的可维护性。并通过其提供的回调机制实现订单历史状态持久化。</li>
+<li>基于Redlock算法实现了Java版本的Redis分布式锁。</li>
+<li>按照REST风格设计API，并通过swagger提供在线文档，降低前后端对接的难度。</li>
+</ol>
+<p><em>技术栈</em>: Java 8，Spring Boot，Spring StateMachine，JOOQ，Akka，Flyway，RabbitMQ，Redis，MySQL</p>
+<h3 id="%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86">后端服务拆分</h3>
+<p><em>项目描述</em></p>
+<p>北京第三石是成立了三年多的创业公司，由于缺乏对后端服务重构和优化，所有的业务都耦合在一个系统里，导致系统臃肿复杂。开发维护成本越来越高。而且Python + Django也导致了严重的性能问题。为了解决这些问题，开始推进后端服务的拆分，以及技术栈转型.</p>
+<p><em>项目职责</em></p>
+<ol>
+<li>系统边界划分以及微服务拆分规划。通过对现在业务的盘点和梳理，一共抽象了5个基础服务：用户，商品，订单，物流，聊天。实施方案如下：将现有系统中和基础服务相关的数据操作代码提取出来，包装为服务；接下来将剩余代码，按照不同的业务归属拆分为不同服务。</li>
+<li>技术调研和技术选型。用户、商品这些基础服务对性能要求比较高，综合对比了SpringBoot和Vertx，最终选择Vert.x作为基础服务框架。</li>
+<li>结合Redis缓存，最终用户服务完成后性能测试（4G/4Core）：读7000+QPS，写3000+QPS。</li>
+</ol>
+<p><em>技术栈</em>: Java8，Vert.x，JOOQ，MySQL，Redis，Docker，etcd。</p>
+<h3 id="%E5%90%8D%E7%A7%B0%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F">名称：业务系统</h3>
+<p><em>项目描述</em></p>
+<p>该项目是ThoughtWorks为某美国公司开发的业务处理系统。该公司主要负责为第三方公司提供财务审计，国际报税等业务。每项业务都由单独的系统处理。为了方便第三方客户查看及使用，需要作一个聚合的网站，把现有的业务聚合到一个网站内操作.</p>
+<p><em>项目经历</em>：</p>
+<ul>
+<li>引入Pact契约测试框架，提前暴露由接口协议改变而引发的微服务集成失败。</li>
+<li>引入React封装前端通用组件，减少团队的重复性工作，保证网站体验的一致性。</li>
+<li>丰富的敏捷开发实战体验：TDD，CodeReview，CI，CD等。</li>
+</ul>
+<p><em>技术栈</em>：.Net Web API，ReactJS，SQL Server</p>
+
+    </body>
+    </html>
