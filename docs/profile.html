@@ -1,69 +1,103 @@
 <!DOCTYPE html>
     <html>
     <head>
-        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <meta charset="UTF-8">
         <title>个人信息</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
         <style>
-/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
-</style>
-<style>
-/* https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs2015.css */ /* * Visual Studio 2015 dark style * Author: Nicolas LLOBERA <nllobera@gmail.com> */ .hljs-keyword, .hljs-literal, .hljs-symbol, .hljs-name { color: #569CD6; } .hljs-link { color: #569CD6; text-decoration: underline; } .hljs-built_in, .hljs-type { color: #4EC9B0; } .hljs-number, .hljs-class { color: #B8D7A3; } .hljs-string, .hljs-meta-string { color: #D69D85; } .hljs-regexp, .hljs-template-tag { color: #9A5334; } .hljs-subst, .hljs-function, .hljs-title, .hljs-params, .hljs-formula { color: #DCDCDC; } .hljs-comment, .hljs-quote { color: #57A64A; font-style: italic; } .hljs-doctag { color: #608B4E; } .hljs-meta, .hljs-meta-keyword, .hljs-tag { color: #9B9B9B; } .hljs-variable, .hljs-template-variable { color: #BD63C5; } .hljs-attr, .hljs-attribute, .hljs-builtin-name { color: #9CDCFE; } .hljs-section { color: gold; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; } /*.hljs-code { font-family:'Monospace'; }*/ .hljs-bullet, .hljs-selector-tag, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo { color: #D7BA7D; } .hljs-addition { background-color: #144212; display: inline-block; width: 100%; } .hljs-deletion { background-color: #600; display: inline-block; width: 100%; } /* From https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs.css */ /* Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name> */ .vscode-light .hljs-function, .vscode-light .hljs-params { color: inherit; } .vscode-light .hljs-comment, .vscode-light .hljs-quote, .vscode-light .hljs-variable { color: #008000; } .vscode-light .hljs-keyword, .vscode-light .hljs-selector-tag, .vscode-light .hljs-built_in, .vscode-light .hljs-name, .vscode-light .hljs-tag { color: #00f; } .vscode-light .hljs-string, .vscode-light .hljs-title, .vscode-light .hljs-section, .vscode-light .hljs-attribute, .vscode-light .hljs-literal, .vscode-light .hljs-template-tag, .vscode-light .hljs-template-variable, .vscode-light .hljs-type, .vscode-light .hljs-addition { color: #a31515; } .vscode-light .hljs-deletion, .vscode-light .hljs-selector-attr, .vscode-light .hljs-selector-pseudo, .vscode-light .hljs-meta { color: #2b91af; } .vscode-light .hljs-doctag { color: #808080; } .vscode-light .hljs-attr { color: #f00; } .vscode-light .hljs-symbol, .vscode-light .hljs-bullet, .vscode-light .hljs-link { color: #00b0e8; } .vscode-light .hljs-emphasis { font-style: italic; } .vscode-light .hljs-strong { font-weight: bold; }
-</style>
-<style>
 .task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
 </style>
         <style>
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
                 font-size: 14px;
                 line-height: 1.6;
             }
         </style>
         
+        
     </head>
-    <body>
-        <h2 id="%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF">个人信息</h2>
+    <body class="vscode-light">
+        <h2 id="%e4%b8%aa%e4%ba%ba%e4%bf%a1%e6%81%af">个人信息</h2>
 <ul>
 <li>姓名：王康；性别：男；生日：1989/12/24；婚否：已婚；</li>
 <li>电话：18610842638； Email：focusj.x@gmail.com；</li>
 <li>毕业院校：河北大学工商学院（本科）；毕业时间：2012/7/01；专业：信息管理与信息系统；</li>
 <li>博客：<a href="http://www.jianshu.com/users/13542edebea3/">http://www.jianshu.com/users/13542edebea3/</a></li>
 </ul>
-<h2 id="%E5%B7%A5%E4%BD%9C%E7%BB%8F%E5%8E%86">工作经历</h2>
-<h3 id="1-2017%E5%B9%B411%E6%9C%88%E4%BB%8A%E5%8C%97%E4%BA%AC%E6%91%A9%E6%8B%9C%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">1. 2017年11月~今：北京摩拜信息技术有限公司</h3>
+<h2 id="%e5%b7%a5%e4%bd%9c%e7%bb%8f%e5%8e%86">工作经历</h2>
+<h3 id="1-2019%e5%b9%b43%e6%9c%88%e4%bb%8a%e5%ad%97%e8%8a%82%e8%b7%b3%e5%8a%a8">1. 2019年3月~今：字节跳动</h3>
+<p>工作职责：</p>
+<ul>
+<li>系统架构优化，服务化改造；</li>
+<li>存储层重构优化；</li>
+</ul>
+<h3 id="1-2017%e5%b9%b411%e6%9c%882019%e5%b9%b43%e6%9c%88%e5%8c%97%e4%ba%ac%e6%91%a9%e6%8b%9c%e4%bf%a1%e6%81%af%e6%8a%80%e6%9c%af%e6%9c%89%e9%99%90%e5%85%ac%e5%8f%b8">1. 2017年11月~2019年3月：北京摩拜信息技术有限公司</h3>
 <p>工作职责：</p>
 <ul>
 <li>负责从零搭建公司业务监控系统，包括：系统架构设计，子系统开发及项目进度把控。</li>
 <li>推进监控系统在公司业务部门的对接和使用。</li>
 </ul>
-<h3 id="2-2016%E5%B9%B403%E6%9C%882017%E5%B9%B411%E6%9C%88%E5%8C%97%E4%BA%AC%E7%AC%AC%E4%B8%89%E7%9F%B3%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">2. 2016年03月~2017年11月：北京第三石信息科技有限公司</h3>
+<h3 id="2-2016%e5%b9%b403%e6%9c%882017%e5%b9%b411%e6%9c%88%e5%8c%97%e4%ba%ac%e7%ac%ac%e4%b8%89%e7%9f%b3%e4%bf%a1%e6%81%af%e7%a7%91%e6%8a%80%e6%9c%89%e9%99%90%e5%85%ac%e5%8f%b8">2. 2016年03月~2017年11月：北京第三石信息科技有限公司</h3>
 <p>工作职责：</p>
 <ul>
 <li>后端核心开发，主要负责后端系统的设计和开发。</li>
 <li>系统重构和微服务架构改造。</li>
 </ul>
-<h3 id="3-2014%E5%B9%B410%E6%9C%882015%E5%B9%B411%E6%9C%88thoughtworks">3. 2014年10月~2015年11月：ThoughtWorks</h3>
+<h3 id="3-2014%e5%b9%b410%e6%9c%882015%e5%b9%b411%e6%9c%88thoughtworks">3. 2014年10月~2015年11月：ThoughtWorks</h3>
 <p>工作职责：</p>
 <ul>
 <li>业务系统全栈开发</li>
 </ul>
-<h3 id="4-2012%E5%B9%B404%E6%9C%882014%E5%B9%B409%E6%9C%88%E5%8C%97%E4%BA%AC%E5%B0%A4%E5%B0%BC%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">4. 2012年04月~2014年09月：北京尤尼信息科技有限公司</h3>
+<h3 id="4-2012%e5%b9%b404%e6%9c%882014%e5%b9%b409%e6%9c%88%e5%8c%97%e4%ba%ac%e5%b0%a4%e5%b0%bc%e4%bf%a1%e6%81%af%e7%a7%91%e6%8a%80%e6%9c%89%e9%99%90%e5%85%ac%e5%8f%b8">4. 2012年04月~2014年09月：北京尤尼信息科技有限公司</h3>
 <p>工作职责：</p>
 <ul>
 <li>负责公司后端系统的开发和维护。</li>
 <li>兼职项目经理，负责和产品经理对接和梳理需求，制定迭代计划。</li>
 </ul>
-<h2 id="%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93">技术总结</h2>
+<h2 id="%e6%8a%80%e6%9c%af%e6%80%bb%e7%bb%93">技术总结</h2>
 <ul>
-<li>熟练使用Java，Scala，Golang，了解面向对象和函数式编程思想.</li>
-<li>熟悉多线程编程和异步编程，了解多种并发模型。了解Java多线程工具库，Akka，Netty，Vert.x框架。</li>
-<li>了解微服务架构，ServiceMesh。了解SpringCloud和Istio框架的使用。</li>
-<li>了解Redis，RabbitMQ，Kafka，MySQL，MongoDB的使用。</li>
-<li>了解Docker和Kubernetes的使用，有一定的DevOps经验。了解敏捷项目开发，了解软件的CI/CD流程。</li>
+<li>熟练使用Java，Scala，Golang，Python，了解面向对象和函数式编程思想；良好的编码习惯，代码洁癖。</li>
+<li>熟悉多线程编程和异步编程，了解多种并发模型。了解Java多线程类库，Akka，Netty，Vert.x框架。</li>
+<li>了解Redis，RabbitMQ，Kafka，MySQL，MongoDB等中间件的使用。</li>
+<li>了解微服务架构，服务网格。了解SpringCloud，Istio，gRPC框架的使用。</li>
+<li>了解SRE工程实践，对Docker和Kubernetes有一定的使用经验。</li>
+<li>熟悉敏捷项目开发，了解软件DevOps，CI，CD。</li>
 </ul>
-<h2 id="%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C">项目经验</h2>
-<h3 id="%E6%91%A9%E6%8B%9C%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F">摩拜监控系统</h3>
+<h2 id="%e9%a1%b9%e7%9b%ae%e7%bb%8f%e9%aa%8c">项目经验</h2>
+<h3 id="%e5%ae%a1%e6%a0%b8%e5%b9%b3%e5%8f%b0%e6%9e%b6%e6%9e%84%e4%bc%98%e5%8c%96">审核平台架构优化</h3>
+<p><em>项目描述</em></p>
+<p>负责公司审核平台的存储层重构，以及架构升级，服务化改造工作。</p>
+<p><em>项目职责</em></p>
+<ol>
+<li>实现DRC数据同步组件，解决异构存储间数据同步实时性和一致性的问题。整个DRC分成两个模块，oplog收集模块负责拉取mongo oplog并同步到kafaka队列；sink模块负责从队列拉取消息，写入ES，HDFS等不同的数据源。
+项目收益：</li>
+</ol>
+<ul>
+<li>数据同步实时性从原来30s提升至ptc99延时750ms；</li>
+<li>数据一致性从原来的2个9提升至7个9+；</li>
+<li>替换原有方案后月节省及其资源5000/月。</li>
+</ul>
+<ol start="2">
+<li>存储层优化，主要为了解决平台在存储层面临的问题：数据分区策略缺陷，导致热门业务数据分区过大，影响mongo稳定性；由于业务特性数据周期生命周期一般小于1月，大量的过期数据严重影响了mongo的性能和稳定性；平台内部引入了多套存储系统，但均未充分发挥作用，主要压力还在mongo。基于上述痛点，主要提出以下改进点：冷热数据隔离，将处于业务完成态的数据迁移到KV系统，只在mongo中保存热数据；充分发挥es的检索优势和kv的性能构造查询引擎，减轻mongo的压力；抽象数据服务，隔离所有的数据操作服务，提供统一数据出口。项目收益：</li>
+</ol>
+<ul>
+<li>冷热数据分离，充分利用es和kv的各自优势，查询接口延时平均下降20%；mongo数据占用量减少约50%，稳定性大幅提升；</li>
+<li>数据服务统一数据出口，为后续数据分区优化奠定基础；同时，推动后续服务改造和数据中台建设。</li>
+</ul>
+<h3 id="%e5%ae%a1%e6%a0%b8%e5%b9%b3%e5%8f%b0gdpr%e6%94%b9%e9%80%a0">审核平台GDPR改造</h3>
+<p><em>项目描述</em></p>
+<p>负责推进平台的GDPR改造，并推动业务方进行服务迁移。</p>
+<p><em>项目职责</em></p>
+<ol>
+<li>完成系统技术改造，实现一套代码多区多环境部署；</li>
+<li>实现数据迁移系统，确保业务线安全平稳迁移；</li>
+<li>作为项目owner整体把控项目进度，确保项目如期交付；</li>
+</ol>
+<h3 id="%e6%91%a9%e6%8b%9c%e7%9b%91%e6%8e%a7%e7%b3%bb%e7%bb%9f">摩拜监控系统</h3>
 <p><em>项目描述</em></p>
 <p>从零开始搭建摩拜内部监控系统，目前所有的核心服务都已接入监控服务。每天监控系统处理7亿+指标信息(100G)，发出有效报警上百条。</p>
 <p><em>项目职责</em></p>
@@ -76,7 +110,7 @@
 <li>使用Golang和Mux开发了内部短域名服务，上线半月的时间已经生成了7000多万个code。</li>
 </ol>
 <p><em>技术栈</em>：SpringCloud，Java8，Golang，gRPC，Istio，Kubernetes，InfluxDB，ElasticSearch，Grafana，Telegraf。</p>
-<h3 id="%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F">订单系统</h3>
+<h3 id="%e8%ae%a2%e5%8d%95%e7%b3%bb%e7%bb%9f">订单系统</h3>
 <p><em>项目描述</em></p>
 <p>北京第三石在美国市场做C2C业务，主要是线下二手物品交易。为了让用户交易更安全方便，公司要做担保交易和物流。</p>
 <p><em>项目职责</em>：</p>
@@ -87,7 +121,7 @@
 <li>按照REST风格设计API，并通过swagger提供在线文档，降低前后端对接的难度。</li>
 </ol>
 <p><em>技术栈</em>: Java 8，Spring Boot，Spring StateMachine，JOOQ，Akka，Flyway，RabbitMQ，Redis，MySQL</p>
-<h3 id="%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86">后端服务拆分</h3>
+<h3 id="%e5%90%8e%e7%ab%af%e6%9c%8d%e5%8a%a1%e6%8b%86%e5%88%86">后端服务拆分</h3>
 <p><em>项目描述</em></p>
 <p>北京第三石是成立了三年多的创业公司，由于缺乏对后端服务重构和优化，所有的业务都耦合在一个系统里，导致系统臃肿复杂。开发维护成本越来越高。而且Python + Django也导致了严重的性能问题。为了解决这些问题，开始推进后端服务的拆分，以及技术栈转型.</p>
 <p><em>项目职责</em></p>
@@ -97,7 +131,7 @@
 <li>结合Redis缓存，最终用户服务完成后性能测试（4G/4Core）：读7000+QPS，写3000+QPS。</li>
 </ol>
 <p><em>技术栈</em>: Java8，Vert.x，JOOQ，MySQL，Redis，Docker，etcd。</p>
-<h3 id="%E5%90%8D%E7%A7%B0%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F">名称：业务系统</h3>
+<h3 id="%e5%90%8d%e7%a7%b0%e4%b8%9a%e5%8a%a1%e7%b3%bb%e7%bb%9f">名称：业务系统</h3>
 <p><em>项目描述</em></p>
 <p>该项目是ThoughtWorks为某美国公司开发的业务处理系统。该公司主要负责为第三方公司提供财务审计，国际报税等业务。每项业务都由单独的系统处理。为了方便第三方客户查看及使用，需要作一个聚合的网站，把现有的业务聚合到一个网站内操作.</p>
 <p><em>项目经历</em>：</p>

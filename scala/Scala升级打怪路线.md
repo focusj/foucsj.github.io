@@ -4,30 +4,31 @@
 
 ###第一部分，入门
 
-1. 变量声明：var，val，lazy val
+1. 变量声明方式：var，val，lazy val
 
     - var声明可变变量；val声明不可变变量。推荐使用val。
 
-    - lazy val惰性赋值：在变量调用时执行赋值，赋值后值不可变。
+    - lazy val惰性赋值：在变量使用时进行赋值，赋值后值将不可变。
 
     - 编译器自动推断类型，无需显示指明变量类型。
 
 
+2. 函数一等公民
 
-2. 函数定义：val，def
+    - 函数赋值给变量；
 
-    - val定义函数变量。
-
-    - 无需显示return，默认最后一行为返回结果
-
+    - 函数当做参数传递；
+    
+    - 将函数作为返回值返回； 
 
 
 3. 字符串
 
     - "hello world"    
+    - string interpolation: s"$a, ${b.c}"
 
-    - 保存字符串格式
-
+    - 格式化的字符串
+```
 """ {
 
         attr1: hello,
@@ -35,17 +36,16 @@
         attr2: world
 
      } """
+```
 
 
+3. 程序控制: if else, for, while, try ... catch
 
-3. 控制结构: if else, for, while, try ... catch
+    - 没有三木表达式，只有if...else，它也是表达式
 
-    - 没有？：，只有if else
+    - for & for...yield
 
-    - if else有返回值
-
-    - for 
-
+```
 for {
 
     i ← list
@@ -53,11 +53,12 @@ for {
     if(i % 2 == 0)
 
 } println(i)
-
+```
 
 
     - try ... catch
-
+  
+```
 try {
 
     ...
@@ -69,10 +70,10 @@ try {
     case e2: Exception => 
 
 }
+```
 
 
-
-5. 模式匹配：match...case
+1. 模式匹配：match...case
 
     - 表达式，有返回值；
 
@@ -82,7 +83,7 @@ try {
 
 
 
-6. 类
+2. 类
 
     - class C(arg: Int)
 
@@ -104,7 +105,7 @@ try {
 
     - 伴生对象
 
-        - 对象的构建
+        - 伴生对象用于对象的构建
 
 
 
@@ -112,7 +113,7 @@ try {
 
     - 自带apply，unapply
 
-    - sealed武装
+    - sealed 武装
 
     - 搭配模式匹配
 
@@ -254,30 +255,26 @@ try {
 
 3. Actor
 
-    ﻿- message-driven
+    - message-driven
 
-    ﻿- stateful
+    - stateful
 
-    ﻿- 最小并发单元
-
-
-
-4. promise和future
-
-    ﻿
+    - 最小并发单元
 
 
 
-5. 第一等函数
+4. [promise和future](https://docs.scala-lang.org/overviews/core/futures.html)
+- future是提交一段可异步执行的代码，创建过程需要上下文中提供一个可用的ExecutionContext，创建完成后便不可修改.
+- promise是一个容器，我们可以通过success和failure来填充这个promise，同时promise通过future接口，将结果转化为一个future。
+
+
+
+
+1. 第一等函数
 
     - 闭包
 
-        - 函数字面量在运行时创建的函数值称为闭包。
-
-       - 自由变量，绑定变量。
-
-其实就是根据上下文对自由变量赋值的过程。
-
+        - 闭包是一个函数，这个函数包含自由变量，绑定变量。对自由变量赋值的过程就称作闭包。
 
 
     - 偏应用
@@ -308,39 +305,37 @@ try {
 
        
 
+2. 尾递归
 
+    - 递归不再可怕
 
-8. 尾递归
-
-    ﻿- 递归不再可怕
-
-尾递归和递归不一样的是，Scala编译器检测到尾递归就用新值更新函数参数，然后把它替换成一个回到函数开头的跳转。相当与一次新的函数调用。
+如果一个递归函数在最后一步调用自己（这里调用自己只是函数调用），那么这个函数的栈是可以被复用的。
 
 
 
-9. 柯里化
+7. 柯里化
 
     - 柯里化是把多参函数转化为单个参数逐一调用的方式。
 
 
 
-10. 类型参数
+8.  类型参数
 
 
 
-11. 型变
+9.  型变
 
 
 
-12. 抽取器
+10. [抽取器](https://docs.scala-lang.org/tour/extractor-objects.html)
 
 
 
-13. 依赖注入
+11. 依赖注入
 
 
 
-14. trait
+12. trait
 
 
 
@@ -354,8 +349,27 @@ try {
 
 
 
-3. 类型类
+3. [类型类](https://scalac.io/typeclasses-in-scala/)
+类型类由三部分构成：行为定义，由trait定义某一类行为；行为触发器，通过隐式参数查找特定类型的行为；类型行为定义。
 
+```
+  trait Show[A] {
+    def show(A: A): String
+  }
+
+  object Shows {
+    def show[A](a: A)(implicit show: Show[A]) = show.show(a)
+
+    implicit val showInt: Show[Int] = new Show[Int] {
+      override def show(i: Int): String = {
+        i.toString
+      }
+    }
+  }
+
+  import Shows._
+  show(10)
+```
 
 
 4. duck type 
