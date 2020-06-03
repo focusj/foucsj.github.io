@@ -1,0 +1,3024 @@
+{
+    "root": {
+        "data": {
+            "text": "服务端技能树"
+        },
+        "children": [
+            {
+                "data": {
+                    "text": "工程架构能力",
+                    "layout_mind_offset": {
+                        "x": -21.249999683350325,
+                        "y": 0
+                    }
+                },
+                "children": [
+                    {
+                        "data": {
+                            "text": "基础理论",
+                            "layout_right_offset": {
+                                "x": -14.75000590458501,
+                                "y": 5.500000409781933
+                            },
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "数据结构与算法"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "数据结构"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "链表、数组"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "栈、队列"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "字典"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "BitSet"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "树"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "堆"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "完全二叉树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "平衡二叉树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "二叉查找树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "B(+/-)树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "红黑树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "LSM树"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "图"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "通用算法"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "排序"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "选择排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "冒泡排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "插入排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "快速排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "归并排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "希尔排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "堆排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "计数排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "桶排序"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "基数排序"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "查找"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "二分查找"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "深度/广度优先搜索"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "分治"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "贪心"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "回溯"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "动态规划"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "机器学习算法"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "理论"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "凸优化"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "算法"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "聚类"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "分类"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "回归"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "方向"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "计算机视觉"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "计算机图形学"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "自然语言处理"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "推荐"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "广告"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "数据挖掘"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "网络相关"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "协议"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "OSI七层协议额"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "TCP/IP"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "TCP状态转移"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "TCP拥塞控制"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "TCP可靠工作原理"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Socket编程"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "HTTP/HTTPS"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "网络IO模型"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "同步IO"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "Reactor模式"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "阻塞IO模型"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "非阻塞IO"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "IO多路复用"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "text": "select"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "text": "poll"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "text": "epoll"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "text": "kqueue"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "信号驱动IO模型"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "异步IO"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "Proactor模式"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "C10K问题"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "长链接和短链接"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《长链接系统架构分享》萧国翘",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/59"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "序列化"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Protobuf"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Hessian"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Thrift"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "编译原理"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Lex/Yacc"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "词法分析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "语法分析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "语义分析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "编译器"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "设计模式"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "设计模式的六大原则"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "单例模式"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "MVC"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "IOC"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "微服务: 康威定律"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "..."
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "操作系统"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Linux"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "进程"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "PCB"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "进程间通信"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "线程、协程"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "进程间同步"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "死锁"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "CPU调度"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "内存"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "虚拟内存"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "内存回收"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "文件系统"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "数据库"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "三大设计范式"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "事务"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "ACID"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "开发测试"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "开发语言"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "编译型：C/C++/Go"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "解释型: Python/PHP"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "《Go程序语言设计最佳实践》项超",
+                                            "hyperlink": "https://study.bytedance.net/course_play/23",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bs2m8nlkz340",
+                                            "created": 1550477041202,
+                                            "text": "《Kotlin基础、进阶与最佳实践》",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "测试"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "TDD理论"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "单元测试"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "压力测试"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Apache ab"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "tcpcopy流量回放"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "全链路压测"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bswgywf3cmo0",
+                                                    "created": 1553508969909,
+                                                    "text": "《支付系统全链路压测诞生记》",
+                                                    "progress": 9,
+                                                    "hyperlink": "https://study.bytedance.net/course_play/183",
+                                                    "hyperlinkTitle": ""
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "AB测试、灰度测试"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《A/B测试入门》 韩云飞",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/66",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "开发调试工具"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "vim + iterm + tmux"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "git"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "gdb"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "tcpdump"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "strace"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "netstat/lsof"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "perf"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "top"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "iostat"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "应用技术"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "接入层"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Nginx"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Nginx》黄龙"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Apache"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Tomcat"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Lighttpd"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "FastCGI"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "UWSGI"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "RPC"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Thrift"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "GRPC"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Dubbo"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务治理"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btw4en9gr1k0",
+                                                    "created": 1557129687816,
+                                                    "text": "《KiteProxy-通用thrift反向代理》陈云",
+                                                    "progress": 9,
+                                                    "hyperlink": "https://study.bytedance.net/course_play/195",
+                                                    "hyperlinkTitle": ""
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bv517wt2zko0",
+                                            "created": 1561690894764,
+                                            "text": "《微服务Pie框架简介》郑建波",
+                                            "hyperlink": "https://study.bytedance.net/course_play/173",
+                                            "hyperlinkTitle": "",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bv9aivi7g8o0",
+                                            "created": 1562123383752,
+                                            "text": "《ServiceMesh的概念与实践》马子昂"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bv9aj6r3x7c0",
+                                                    "created": 1562123408234,
+                                                    "text": "第1章-ServiceMesh 的概念",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/218",
+                                                    "hyperlinkTitle": "第1章-ServiceMesh 的概念",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bv9ajst2huo0",
+                                                    "created": 1562123456242,
+                                                    "text": "第2章-ByteMesh 的设计与实践",
+                                                    "hyperlink": "https://study.bytedance.net/course_center/219",
+                                                    "hyperlinkTitle": "第2章-ByteMesh 的设计与实践",
+                                                    "progress": 5
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "消息队列"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "消息总线",
+                                            "expandState": "expand"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "消息顺序"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Kafka"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Kafka》郭俊",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/39",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "NSQ"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "RabbitMQ"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "ActiveMQ"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "RocketMQ"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Redis消息"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Redis与Cache平台介绍》刘冬",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/41",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "《分布式消息队列》\\t付建双",
+                                            "hyperlink": "https://study.bytedance.net/course_play/31",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "《分布式实时计算系统》张光辉",
+                                            "hyperlink": "https://study.bytedance.net/course_play/30",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "存储与持久化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "关系型数据库"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "MySQL"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "存储引擎"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "索引"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "事务ACID"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "MVCC"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "锁机制"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Innodb"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "复制/半同步复制"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "分布式事务"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "SQL优化/Explain"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Mysql Proxy"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "《MySQL与RDS平台介绍》张博",
+                                                            "hyperlink": "https://study.bytedance.net/course_play/65",
+                                                            "progress": 9
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bwxz3o2ew7k0",
+                                                            "created": 1568286317244,
+                                                            "text": "《MySQL现状与未来介绍》张雷",
+                                                            "progress": 9,
+                                                            "hyperlink": "https://study.bytedance.net/course_play/290",
+                                                            "hyperlinkTitle": ""
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Oracle"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "KV"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Redis"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "《Redis原理与客户端实现》陶昕蕊",
+                                                            "hyperlink": "https://study.bytedance.net/course_play/95",
+                                                            "hyperlinkTitle": "",
+                                                            "progress": 9
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "RocksDB"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "文档型"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "MongoDB"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "列存储"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "HBase"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Cassandra"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "内存数据库"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "SQLite"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "TimesTen"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "NewSQL"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "F1/Spanner"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "TiDB"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "本地缓存"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Guava Cache"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "浏览器缓存"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "OSCache"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "分布式缓存"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Memcached"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "slab内存分配"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "libevent事件处理"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "删除机制"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "一致性哈希"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Redis"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "数据类型以及底层实现"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "事件处理器"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "持久化AOF/RDB"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "集群"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "twenproxy"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "大数据"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "分布式存储"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "HDFS"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "数据库"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "HBase"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "分布式协调"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Zookeeper"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "大数据通用处理平台"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Hadoop"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Hadoop大数据生态》师锐",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/29",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Spark"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Spark》\\t金成",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/42",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bp9eyvssxko0",
+                                                    "created": 1540198972018,
+                                                    "text": "《Spark SQL 内部优化原理》郭俊",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/105",
+                                                    "hyperlinkTitle": "",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Flink"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "流式计算"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Storm"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Spark Streaming"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Flink"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "日志收集"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Scribe"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Flume"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "资源调度"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Yarn"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Mesos"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "数据分析/数据仓库"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Pig"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Hive"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bp9ezgry25s0",
+                                                    "created": 1540199017679,
+                                                    "text": "《Hive入门》鲜学良",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/100",
+                                                    "hyperlinkTitle": "",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Spark SQL"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Presto"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "ELK"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "数据治理"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "搜索引擎"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "搜索引擎原理"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "Elasticsearch"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "Solr"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "Lucene"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "Sphinx"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "运维"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "监控报警"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "系统监控"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "监控项:CPU/Load/Mem/Network"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "监控系统:Ganglia/Falcon"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "常用命令:top/iostat/sar/..."
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "业务监控"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "监控项"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "QPS"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Latency"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "日志"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "SLA"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "工具"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "text": "Grafana"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Zabbix"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "text": "Nagios"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "报警"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "报警策略"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "报警配置"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "报警方式"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "APP埋点"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "applog"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "日志"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "日志收集"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "Scribe"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Flume"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "日志存储"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "日志查询"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "持续集成CI"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Jenkins"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Dev/Staging/Product Env"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "buamcn1nt2o0",
+                                            "created": 1558602149987,
+                                            "text": "《CI/CD/CD - 持续集成/持续交付/持续部署简介》武鑫",
+                                            "hyperlink": "https://study.bytedance.net/course_play/203",
+                                            "hyperlinkTitle": ""
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "虚拟化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "KVM"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "Xen"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "OPenVZ"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "容器"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "Docker"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "《Docker容器技术介绍》江帆",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/113",
+                                                    "hyperlinkTitle": "",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "K8S"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "安全"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "Web安全"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "XSS"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "SQL注入"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "CSRF"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "脚本注入"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "DDos"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "数据安全"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "备份"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "加密"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "授权认证"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "OAuth"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "SSO"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "加密解密"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "对称加密"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "非对称加密"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "哈希算法"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "text": "系统架构能力",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "text": "高可用性设计"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "分层"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "应用层"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务层"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "数据层"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "高可用应用"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "请求无状态"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "负载均衡"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "高可用服务"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "资源隔离"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务解耦"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "低耦合，减少依赖"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务限流"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "计数器"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "漏桶算法"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "令牌桶算法"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Nginx限流"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务容灾"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "防雪崩 Hystrix"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "缓存击穿、失效以及热点数据"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "多机房容灾/异地多活"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "容灾演练"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "《深入浅出容灾稳定性》朱伟强",
+                                                    "hyperlink": "https://study.bytedance.net/course_play/53",
+                                                    "progress": 9
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务降级"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "紧急情况下，保证核心业务高可用"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "超时设置"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "异步调用"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务幂等性设计"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "高可用数据"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "CAP"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "数据备份"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "失效转移"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "高可用服务质量保证"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "《防御性编程》IES"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "代码控制"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "自动化测试"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "灰度发布"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "高可用服务监控报警"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "监控数据采集"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "监控数据分析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "异常数据报警"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "《海量服务之道》IES"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "《服务治理》谢蒙/成国柱"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "可扩展性设计"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "应用服务集群扩展性设计"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "容器Docker技术"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "负载均衡方式"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "硬件负载均衡F5"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "反向代理Nginx"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "DNS轮询"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "LVS+Keepalived"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "负载均衡算法"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "轮询"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "加权轮询"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "随机"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "最少连接"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "QoS"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "分布式缓存集群扩展性设计"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "一致性Hash算法"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "数据库扩展性设计"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "读写分离"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "sharding"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "水平拆分"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "垂直拆分"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "中间件"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "消息解耦"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "事件驱动架构"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "分布式消息队列"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "微服务"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "服务注册"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务发现"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "服务路由控制"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "高性能设计"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "前端性能优化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "浏览器访问优化"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "CDN加速"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "反向代理"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "服务性能优化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "异步"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "消息队列"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "分布式缓存"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "缓存命中率"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "缓存预热"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "缓存穿透"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "代码优化"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "资源复用"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "Copy On Write"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "内联优化"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "数据预读"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "延迟计算"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "并发"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "内存池"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "模块化"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btw2twtgse00",
+                                            "created": 1557125241859,
+                                            "text": "《golang源码分析之sync.Mutex》吴迪",
+                                            "hyperlink": "https://study.bytedance.net/course_play/193",
+                                            "hyperlinkTitle": "",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "存储优化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "SSD"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "LSM树"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "RAID"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "一致性设计"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "传统一致性"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "强一致性"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "原子性"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "一致性"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "隔离性"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "持久性"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "分布式一致性"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "理论"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "CAP"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "BASE"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "协议"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "两阶段提交协议"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "三阶段提交协议"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "TCC"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "最终一致性"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "查询模式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "补偿模式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "异步确保模式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "消息确保模式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "校对模式"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "超时"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "text": "快速失败"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "text": "补偿模式"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btw2h5uxq1k0",
+                                            "created": 1557124242805,
+                                            "text": "《分布式一致性实践-通用资金账户》罗林波",
+                                            "hyperlink": "https://study.bytedance.net/course_play/189",
+                                            "hyperlinkTitle": "",
+                                            "progress": 9
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "一致性算法"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "paxos"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "zab"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "raft"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "gossip"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "nwr"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "锁"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "text": "悲观锁"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "乐观锁"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "行级锁"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "分布式锁"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "text": "CAS"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "协议设计"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "二进制协议"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "文本协议"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "text": "安全性设计"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "text": "常见架构"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "text": "秒杀系统"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bszm603i8ns0",
+                                            "created": 1553828311885,
+                                            "text": "《春节红包雨架构与设计》王正迪",
+                                            "progress": 9,
+                                            "hyperlink": "https://study.bytedance.net/course_play/185",
+                                            "hyperlinkTitle": ""
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "bszseol5mo80",
+                                    "created": 1553845918767,
+                                    "text": "《智能盯盘的背后——通用消息系统设计与实践》宋增宽",
+                                    "progress": 9,
+                                    "hyperlink": "https://study.bytedance.net/course_play/186",
+                                    "hyperlinkTitle": ""
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "text": "支付系统"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bs2msv50kt40",
+                                            "created": 1550478624899,
+                                            "text": "《财经支付收银台接入》周文 ",
+                                            "progress": 9,
+                                            "hyperlink": "https://study.bytedance.net/course_play/152",
+                                            "hyperlinkTitle": ""
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "text": "全局唯一ID"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bs2mtqe0ra80",
+                                    "created": 1550478692922,
+                                    "text": "《ByteGraph——千亿图数据存储与毫秒级查询系统》张帅",
+                                    "progress": 9,
+                                    "hyperlink": "https://study.bytedance.net/course_play/158",
+                                    "hyperlinkTitle": ""
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btw2wl6oc7s0",
+                                    "created": 1557125451629,
+                                    "text": "《财经支付系统实践》william",
+                                    "hyperlink": "https://study.bytedance.net/course_play/200",
+                                    "hyperlinkTitle": "",
+                                    "progress": 9
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "buam8tsdw4w0",
+                                    "created": 1558601851207,
+                                    "text": "《ApiGateway介绍》王永刚",
+                                    "hyperlink": "https://study.bytedance.net/course_play/202",
+                                    "hyperlinkTitle": "",
+                                    "progress": 9
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}
